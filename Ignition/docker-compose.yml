@@ -39,13 +39,13 @@ services:
       GATEWAY_NETWORK_WHITELIST: Ignition-gatewayr-backup,Ignition-standard-backup,ign-gwr
     #   IGNITION_UID: 1000
     #   IGNITTION_GID: 1000
-    user: "ignition"
+    user: "0:0"
     volumes:
-      - ./gw-data:/usr/local/bin/ignition/data
+    #   - ./gw-data:/usr/local/bin/ignition/data
       - ./gw-backup:/backup
       - ./gw-init/base.gwbk:/restore.gwbk
-      - ./gw-init/gateway-${COMPOSE_PROFILES:-independent}.xml:/usr/local/bin/ignition/data/redundancy.xml
-    #  - ./docs:/usr/local/bin/ignition/data/projects/docs
+    #   - ./gw-init/gateway-${COMPOSE_PROFILES:-independent}.xml:/usr/local/bin/ignition/data/redundancy.xml
+      - ./docs:/usr/local/bin/ignition/data/projects/docs
     depends_on:
       - db
 
@@ -65,12 +65,12 @@ services:
       ACCEPT_IGNITION_EULA: "Y"
       GATEWAY_ADMIN_USERNAME: admin
       GATEWAY_ADMIN_PASSWORD_FILE: /run/secrets/gateway-admin-password
-      IGNITION_UID: 1000
-      IGNITTION_GID: 1000
-    user: "0:0"
-    volumes:
-      - ign-gwr-data:/usr/local/bin/ignition/data
-      - ./gw-init/gatewayr-redundancy.xml:/usr/local/bin/ignition/data/redundancy.xml
+#       IGNITION_UID: 1000
+#       IGNITTION_GID: 1000
+#     user: "0:0"
+    # volumes:
+    #   - ./gwr-data:/usr/local/bin/ignition/data
+    #   - ./gw-init/gatewayr-redundancy.xml:/usr/local/bin/ignition/data/redundancy.xml
     depends_on:
       - db
 
@@ -84,7 +84,7 @@ services:
       POSTGRES_PASSWORD: ignition
       POSTGRES_DB: ignition
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - ./db-data:/var/lib/postgresql/data
     networks:
       - docker-network
     

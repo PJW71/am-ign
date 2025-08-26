@@ -1,2 +1,11 @@
 # Ignition secrets
-gateway-admin-password
+secrets/gateway-admin-password
+
+# Postgress database
+db-data/*
+
+# Ignition data
+gw-data/*
+# gw-backup/*
+# gw-init/*
+docs/*
