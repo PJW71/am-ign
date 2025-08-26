@@ -37,15 +37,15 @@ services:
       GATEWAY_NETWORK_REQUIRESSL: false
       GATEWAY_NETWORK_SECURITYPOLICY: SpecifiedList
       GATEWAY_NETWORK_WHITELIST: Ignition-gatewayr-backup,Ignition-standard-backup,ign-gwr
-      IGNITION_UID: 1000
-      IGNITTION_GID: 1000
-    user: "0:0"
+    #   IGNITION_UID: 1000
+    #   IGNITTION_GID: 1000
+    user: "ignition"
     volumes:
-      - ign-gw-data:/usr/local/bin/ignition/data
+      - ./gw-data:/usr/local/bin/ignition/data
       - ./gw-backup:/backup
       - ./gw-init/base.gwbk:/restore.gwbk
       - ./gw-init/gateway-${COMPOSE_PROFILES:-independent}.xml:/usr/local/bin/ignition/data/redundancy.xml
-      - ./docs:/usr/local/bin/ignition/data/projects/docs
+    #  - ./docs:/usr/local/bin/ignition/data/projects/docs
     depends_on:
       - db
 
@@ -92,13 +92,14 @@ secrets:
   gateway-admin-password:
     file: secrets/gateway-admin-password
 
-volumes:
-  ign-gw-data:
-    external: true
-  ign-gwr-data:
-    external: true
-  db-data:
-    external: true
+
+# volumes:
+#   ign-gw-data:
+#     external: true
+#   ign-gwr-data:
+#     external: true
+#   db-data:
+#     external: true
 
 networks:
   docker-network:
