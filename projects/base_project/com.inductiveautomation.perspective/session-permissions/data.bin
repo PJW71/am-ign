@@ -1,0 +1,14 @@
+{
+  "type": "AnyOf",
+  "securityLevels": [
+    {
+      "name": "Authenticated",
+      "children": [
+        {
+          "name": "Roles",
+          "children": []
+        }
+      ]
+    }
+  ]
+}

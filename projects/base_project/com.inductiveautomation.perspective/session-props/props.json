@@ -1,0 +1,182 @@
+{
+  "custom": {
+    "activePage": "value",
+    "clutter": {
+      "zoom": 4
+    },
+    "mobileScreen": false,
+    "openPopups": {},
+    "openViews": [
+      {
+        "subView": "Pages/TPM05/Testing_Screen",
+        "view": "Pages/Main"
+      },
+      {
+        "subView": "Pages/TPM05/Dashboard/Testing_Screen",
+        "view": "Pages/Main"
+      },
+      {
+        "subView": "Pages/TPM05/Testing_Screen_obs",
+        "view": "Pages/Main"
+      },
+      {
+        "subView": "Pages/TPM05/Testing_Screen obs",
+        "view": "Pages/Main"
+      },
+      {
+        "subView": "Pages/TPM05/Dashboard/Testing_Screen obs",
+        "view": "Pages/Main"
+      },
+      {
+        "subView": "Pages/TPM05/Dashboard/Testing_Screen_obs",
+        "view": "Pages/Main"
+      },
+      {
+        "subView": "Pages/TPM05/Dashboard/Dashboard/Testing_Screen",
+        "view": "Pages/Main"
+      },
+      {
+        "subView": "Pages/TPM05/Dashboard/Dashboard/Testing_Screen_obs",
+        "view": "Pages/Main"
+      },
+      {
+        "subView": "Pages/Tamer Test/Test",
+        "view": "Pages/Main"
+      },
+      {
+        "subView": "Pages/Tamer /Dashboard/Test",
+        "view": "Pages/Main"
+      },
+      {
+        "subView": "Pages/Tamer /Dashboard/Dashboard/Test",
+        "view": "Pages/Main"
+      },
+      {
+        "subView": "Pages/Tamer /Test",
+        "view": "Pages/Main"
+      },
+      {
+        "subView": "Pages/TPM05/Overview",
+        "view": "Pages/Main"
+      },
+      {
+        "subView": "Pages/TPM05/Dashboard/Overview",
+        "view": "Pages/Main"
+      },
+      {
+        "subView": "Pages/TPM05/Dashboard/Dashboard/Overview",
+        "view": "Pages/Main"
+      },
+      {
+        "subView": "Pages/northvoltLogo",
+        "view": "Pages/Main"
+      },
+      {
+        "subView": "Pages/Dashboard/northvoltLogo",
+        "view": "Pages/Main"
+      },
+      {
+        "subView": "Pages/Unit1/CMA1",
+        "view": "Pages/Main"
+      },
+      {
+        "subView": "Pages/Unit1/Dashboard/CMA1",
+        "view": "Pages/Main"
+      }
+    ],
+    "writeAccess": true
+  },
+  "propConfig": {
+    "custom.provider": {
+      "binding": {
+        "config": {
+          "expression": "now(0)"
+        },
+        "transforms": [
+          {
+            "code": "\tprov \u003d str(system.tag.getConfiguration(\u0027\u0027, False)[0][\"path\"])\n\tprov \u003d prov.replace(\"[\", \"\").replace(\"]\", \"\")\n\treturn prov",
+            "type": "script"
+          }
+        ],
+        "type": "expr"
+      }
+    },
+    "custom.securityZones": {
+      "binding": {
+        "config": {
+          "path": "this.props.auth.securityLevels"
+        },
+        "transforms": [
+          {
+            "code": "\tzones \u003d []\n\tfor level in value:\n\t\tif level[\u0027name\u0027] \u003d\u003d \u0027SecurityZones\u0027:\n\t\t\tif len(level[\u0027children\u0027]) !\u003d 0:\n\t\t\t\tfor zone in level[\u0027children\u0027]:\n\t\t\t\t\tzones.append(zone[\u0027name\u0027])\n\treturn zones",
+            "type": "script"
+          }
+        ],
+        "type": "property"
+      }
+    },
+    "props.auth": {
+      "access": "PRIVATE",
+      "persistent": false
+    },
+    "props.device.accelerometer": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.device.identifier": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.device.timezone": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.device.type": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.device.userAgent": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.gateway": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.geolocation.data": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.geolocation.permissionGranted": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.host": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.id": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.lastActivity": {
+      "access": "SYSTEM",
+      "persistent": false
+    }
+  },
+  "props": {
+    "address": "10.240.3.142",
+    "appBar": {
+      "togglePosition": "hidden"
+    },
+    "device": {},
+    "geolocation": {},
+    "locale": "en-US",
+    "pipes": {
+      "autoAppearance": "p\u0026id"
+    },
+    "symbols": {
+      "autoAppearance": "p\u0026id"
+    }
+  }
+}

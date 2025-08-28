@@ -1,0 +1,320 @@
+{
+  "custom": {
+    "semaphore": false
+  },
+  "params": {},
+  "propConfig": {
+    "custom.semaphore": {
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 537,
+      "width": 741
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Title"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "fontFamily": "sofia pro",
+            "fontWeight": 400,
+            "margin-bottom": 5
+          },
+          "text": "Select Start Tag Path to Active Simulator Mode:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Base Path"
+        },
+        "position": {
+          "basis": "AUTO",
+          "shrink": 0
+        },
+        "props": {
+          "params": {
+            "label": "1. Select Fully Qualified Base Path",
+            "tagPath": "[nv]F1"
+          },
+          "path": "Lib/App/Tag Browser/Main",
+          "style": {
+            "margin": "0 0 20px 0"
+          }
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\tdef tagCount(path):\n\n\t\ttagNo \u003d 0\n\t\tresults \u003d system.tag.browse(path, {})\n\n\t\tfor result in results.getResults():\n\n\t\t\tif str(result[\u0027tagType\u0027]) \u003d\u003d \"AtomicTag\":\n\t\t\t\ttagNo \u003d tagNo + 1\n\n\t\t\tif result[\u0027hasChildren\u0027] \u003d\u003d True:\n\t\t\t\ttagNo +\u003d tagCount(result[\u0027fullPath\u0027])\n\n\t\treturn tagNo\t\t\n\t\n\t\n\tself.parent.parent.getChild(\"Result\").props.text \u003d \"Total No. of Tags: \" + str(tagCount(self.parent.parent.getChild(\"Base Path\").props.params.tagPath))"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Count"
+            },
+            "position": {
+              "basis": "130px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "custom.key": {
+                "binding": {
+                  "config": {
+                    "path": ""
+                  },
+                  "transforms": [
+                    {
+                      "code": "\treturn system.tag.browse(\"[MD]Assets/Toshka/ZoneH/H01/AV101\", {})",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.enabled": {
+                "binding": {
+                  "config": {
+                    "expression": "!{view.custom.semaphore}"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "image": {
+                "icon": {
+                  "path": "nader/tag-browse"
+                }
+              },
+              "style": {
+                "border": "none",
+                "margin": "0 10px"
+              },
+              "text": "Tag Counters"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\tfrom java.lang import System\n\n\tbasePath \u003d self.parent.parent.getChild(\"Base Path\").props.params.tagPath\n\n\tif basePath !\u003d \"\":\n\t\tself.view.custom.semaphore \u003d True\n\t\tself.parent.parent.getChild(\"Result\").props.text \u003d \"Please wait until all tags are conveted.\"\n\t\tstart \u003d System.nanoTime()\t\n\n\t\ttagNo \u003d Util.simulation(basePath, False)\n\t\tend \u003d System.nanoTime()\n\t\ttime \u003d str(round( (end-start)/1000000000.0, 3 ) )\t\t\n\t\t\n\t\tself.view.custom.semaphore \u003d False\n\t\tself.parent.parent.getChild(\"Result\").props.text \u003d str(tagNo) + \" OPC Tags are converted successfully @ \" + str(time) + \"s\""
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Sim Off"
+            },
+            "position": {
+              "basis": "130px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "custom.key": {
+                "binding": {
+                  "config": {
+                    "path": ""
+                  },
+                  "transforms": [
+                    {
+                      "code": "\treturn system.tag.browse(\"[MD]Assets/Toshka/ZoneH/H01/AV101\", {})",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.enabled": {
+                "binding": {
+                  "config": {
+                    "expression": "!{view.custom.semaphore}"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "image": {
+                "icon": {
+                  "path": "material/psychology"
+                }
+              },
+              "style": {
+                "margin": "0 10px"
+              },
+              "text": "OFF"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\tfrom java.lang import System\n\t\n\tbasePath \u003d self.parent.parent.getChild(\"Base Path\").props.params.tagPath\n\n\tif basePath !\u003d \"\":\n\t\tself.view.custom.semaphore \u003d True\n\t\tself.parent.parent.getChild(\"Result\").props.text \u003d \"Please wait until all tags are conveted.\"\n\t\tstart \u003d System.nanoTime()\t\n\n\t\ttagNo \u003d Util.simulation(basePath, True)\n\t\tend \u003d System.nanoTime()\n\t\ttime \u003d str(round( (end-start)/1000000000.0, 3 ) )\t\t\n\t\t\n\t\tself.view.custom.semaphore \u003d False\n\t\tself.parent.parent.getChild(\"Result\").props.text \u003d str(tagNo) + \" OPC Tags are converted successfully @ \" + str(time) + \"s\""
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Sim On"
+            },
+            "position": {
+              "basis": "130px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "custom.key": {
+                "binding": {
+                  "config": {
+                    "path": ""
+                  },
+                  "transforms": [
+                    {
+                      "code": "\treturn system.tag.browse(\"[MD]New Folder\", {})",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.enabled": {
+                "binding": {
+                  "config": {
+                    "expression": "!{view.custom.semaphore}"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "image": {
+                "icon": {
+                  "path": "material/psychology"
+                }
+              },
+              "style": {
+                "margin": "0 10px"
+              },
+              "text": "ON"
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "Buttons"
+        },
+        "position": {
+          "basis": "36px",
+          "shrink": 0
+        },
+        "props": {
+          "justify": "center"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "basis": "32px",
+          "grow": 1
+        },
+        "props": {
+          "alignVertical": "top",
+          "style": {
+            "padding": "20px 0"
+          },
+          "text": "Simulator Engine:\nThe Engine only change opc tags to memory if the opc tag has opcItemPath.\nThe expression and other kind of tags leave alone.\nThe Engine use a random value between min and max enginner value to set in simulator mode.\n\nTag Counter:\nOnly count normal tag and atomic tag of UDT. The UDT itself doesn\u0027t include in the count.\nAll type of type include in the count.(OPC, memory, ..)",
+          "textStyle": {
+            "color": "--color-label-2",
+            "fontStyle": "italic",
+            "whiteSpace": "pre-wrap"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Result"
+        },
+        "position": {
+          "basis": "38px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "backgroundColor": "--color-header",
+            "color": "#FFFFFF",
+            "fontSize": 14,
+            "fontStyle": "italic",
+            "padding": "0 10px",
+            "textAlign": "left",
+            "textIndent": "10"
+          },
+          "text": "Total No. of Tags: 1559"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Icon"
+        },
+        "position": {
+          "basis": "30px"
+        },
+        "props": {
+          "path": "material/upgrade"
+        },
+        "type": "ia.display.icon"
+      }
+    ],
+    "events": {
+      "system": {
+        "onStartup": {
+          "config": {
+            "script": "\tself.view.custom.semaphore \u003d False"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "padding": 20,
+        "user-select": "none"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

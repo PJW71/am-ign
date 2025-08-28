@@ -1,0 +1,149 @@
+{
+  "custom": {},
+  "params": {
+    "icon": "BMS/temp",
+    "label": "Hi Pressure",
+    "text": "This where you add your text"
+  },
+  "propConfig": {
+    "params.icon": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.label": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.text": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 45,
+      "width": 259
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "height": 14.999999999999998,
+          "rotate": {
+            "anchor": "36% 50%"
+          },
+          "width": "100%",
+          "y": 2.99
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.label"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "padding-left": 8
+          },
+          "textStyle": {
+            "classes": "pid-label",
+            "textAlign": "left"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "20px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.path": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.icon"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "color": "--color-label-2"
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "name": "Label_1"
+            },
+            "position": {
+              "grow": 1,
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.text"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "pid-number2",
+                "cursor": "pointer",
+                "padding": "0 2px 1px 3px"
+              },
+              "textStyle": {
+                "textAlign": "left"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "height": 26,
+          "rotate": {
+            "anchor": "36% 50%"
+          },
+          "width": "100%",
+          "y": 18.97
+        },
+        "props": {
+          "style": {
+            "overflow": "hidden",
+            "padding": "0 0 0 8px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "min-width": 100
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

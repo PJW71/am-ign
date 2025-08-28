@@ -1,0 +1,196 @@
+{
+  "custom": {},
+  "params": {
+    "icon": "BMS/temp",
+    "label": "Hi Pressure",
+    "tagPath": "[NOVO]Eddy Co/Astrodog S CTB/Gas Sales/EFM110/ANSYS/nC5"
+  },
+  "propConfig": {
+    "params.icon": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.label": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 45,
+      "width": 92
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "height": 14.999999999999998,
+          "rotate": {
+            "anchor": "36% 50%"
+          },
+          "width": "100%",
+          "y": 2.99
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.label"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "padding-left": 8
+          },
+          "textStyle": {
+            "classes": "pid-label",
+            "textAlign": "left"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "20px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.path": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.icon"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "color": "--color-label-2"
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "draggable": true,
+                    "id": "{view.params.tagPath}",
+                    "modal": false,
+                    "overlayDismiss": false,
+                    "position": {
+                      "relativeLocation": "top-left"
+                    },
+                    "positionType": "relative",
+                    "resizable": true,
+                    "showCloseIcon": true,
+                    "type": "open",
+                    "viewParams": {
+                      "alias": "{view.params.label}",
+                      "tagPath": "{view.params.tagPath}"
+                    },
+                    "viewPath": "Lib/App/Chart",
+                    "viewportBound": true
+                  },
+                  "scope": "C",
+                  "type": "popup"
+                },
+                "onContextMenu": {
+                  "config": {
+                    "script": "\tClickToGraph.OpenMenu(self.view.params.tagPath , event.clientX, event.clientY)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Label_1"
+            },
+            "position": {
+              "grow": 1,
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "indirect",
+                    "references": {
+                      "tagPath": "{view.params.tagPath}"
+                    },
+                    "tagPath": "{tagPath}"
+                  },
+                  "overlayOptOut": true,
+                  "transforms": [
+                    {
+                      "formatType": "numeric",
+                      "formatValue": "##.##",
+                      "type": "format"
+                    }
+                  ],
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "pid-number2",
+                "cursor": "pointer",
+                "padding": "0 2px 1px 3px"
+              },
+              "textStyle": {
+                "textAlign": "left"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "height": 26,
+          "rotate": {
+            "anchor": "36% 50%"
+          },
+          "width": "100%",
+          "y": 18.97
+        },
+        "props": {
+          "style": {
+            "overflow": "hidden",
+            "padding": "0 0 0 8px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "min-width": 100
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

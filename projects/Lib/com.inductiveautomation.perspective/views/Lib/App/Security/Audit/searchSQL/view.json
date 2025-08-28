@@ -1,0 +1,132 @@
+{
+  "custom": {},
+  "params": {
+    "Search": "%%",
+    "iconPath": "material/person",
+    "placeHolder": "Actor..."
+  },
+  "propConfig": {
+    "params.Search": {
+      "binding": {
+        "config": {
+          "expression": "if(coalesce({/root/Search.props.text}, \"\") \u003d \"\", \"%%\", \"%\" + {/root/Search.props.text} + \"%\")"
+        },
+        "type": "expr"
+      },
+      "onChange": {
+        "enabled": null,
+        "script": "\tif currentValue.value \u003d\u003d \u0027\u0027:\n\t\tself.getChild(\"root\").getChild(\"Search\").props.text \u003d \u0027\u0027\n\t\tself.params.Search \u003d \u0027%%\u0027\t\t"
+      },
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.iconPath": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.placeHolder": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 30,
+      "width": 80
+    },
+    "loading": {
+      "mode": "blocking"
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Search",
+          "tooltip": {
+            "delay": 1000,
+            "enabled": true,
+            "location": "bottom",
+            "text": "Type your filter word here"
+          }
+        },
+        "position": {
+          "height": "100%",
+          "width": "100%"
+        },
+        "propConfig": {
+          "props.placeholder": {
+            "binding": {
+              "config": {
+                "path": "view.params.placeHolder"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "deferUpdates": false,
+          "style": {
+            "border": "none",
+            "color": "",
+            "fontSize": "14px"
+          }
+        },
+        "type": "ia.input.text-field"
+      },
+      {
+        "meta": {
+          "name": "Icon"
+        },
+        "position": {
+          "height": 18,
+          "width": 18,
+          "x": "auto",
+          "y": "50%"
+        },
+        "propConfig": {
+          "position.rotate": {
+            "binding": {
+              "config": {
+                "path": ""
+              },
+              "type": "property"
+            }
+          },
+          "props.color": {
+            "binding": {
+              "config": {
+                "expression": "if({../Search.props.text} !\u003d \"\", \"--color-select\", \"--color-label-2\")"
+              },
+              "type": "expr"
+            }
+          },
+          "props.path": {
+            "binding": {
+              "config": {
+                "path": "view.params.iconPath"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "right": "5px",
+            "transform": "translateY(-50%)"
+          }
+        },
+        "type": "ia.display.icon"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "height": "28px"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

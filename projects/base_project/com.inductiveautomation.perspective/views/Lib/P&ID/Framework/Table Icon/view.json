@@ -1,0 +1,145 @@
+{
+  "custom": {},
+  "params": {
+    "icon": "P\u0026ID/PB",
+    "tooltip": "Traveling",
+    "value": true
+  },
+  "propConfig": {
+    "params.icon": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.mydoor.lock": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.mydoor.open": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.tooltip": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 24,
+      "width": 29
+    },
+    "dropConfig": {
+      "udts": [
+        {
+          "action": "path",
+          "param": "myDoor",
+          "type": "Door"
+        }
+      ]
+    },
+    "loading": {
+      "mode": "blocking"
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "No Data",
+          "tooltip": {
+            "enabled": true,
+            "location": "bottom",
+            "tail": false,
+            "text": "No Valid Data"
+          }
+        },
+        "position": {
+          "height": 24,
+          "width": 24,
+          "x": 3.5024032592773438,
+          "y": 0.4969949722290039
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.value} \u003d Null, True, False)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "color": "var(--color-label-1)",
+          "path": "material/disc_full",
+          "style": {
+            "classes": ""
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "name": "Icon",
+          "tooltip": {
+            "enabled": true,
+            "location": "bottom",
+            "tail": false
+          }
+        },
+        "position": {
+          "height": 24,
+          "width": 24,
+          "x": 1.5024032592773438,
+          "y": -0.5030050277709961
+        },
+        "propConfig": {
+          "meta.tooltip.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.tooltip"
+              },
+              "type": "property"
+            }
+          },
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "expression": "if(coalesce({view.params.value},False) ,True, False)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.path": {
+            "binding": {
+              "config": {
+                "path": "view.params.icon"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "color": "var(--color-label-1)",
+          "style": {
+            "classes": ""
+          }
+        },
+        "type": "ia.display.icon"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

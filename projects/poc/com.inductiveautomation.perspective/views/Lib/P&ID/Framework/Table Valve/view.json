@@ -1,0 +1,242 @@
+{
+  "custom": {},
+  "params": {
+    "rowData": {
+      "CLS": false,
+      "ESD": false,
+      "OPN": false
+    }
+  },
+  "propConfig": {
+    "params.fan": {
+      "paramDirection": "input",
+      "persistent": false
+    },
+    "params.mydoor.lock": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.mydoor.open": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.rowData": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.rowData.CLS": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.rowData.OPN": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.rowData.OPN_1": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.rowData.OPN_2": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 24,
+      "width": 45
+    },
+    "dropConfig": {
+      "udts": [
+        {
+          "action": "path",
+          "param": "myDoor",
+          "type": "Door"
+        }
+      ]
+    },
+    "loading": {
+      "mode": "blocking"
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "transition"
+        },
+        "position": {
+          "height": 20,
+          "width": 20,
+          "x": 23.4949,
+          "y": 1.50446
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "expression": "if((coalesce({view.params.rowData.CLS},True) \u003d coalesce({view.params.rowData.OPN},False)) ,True,False)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "color": "var(--color-label-1)",
+          "path": "material/import_export",
+          "style": {
+            "classes": "Button/icon",
+            "cursor": "pointer",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "name": "Valve ICON"
+        },
+        "position": {
+          "height": 24,
+          "width": 24,
+          "x": -1.5031,
+          "y": -0.4969699999999999
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.rowData.CLS} \u003d Null \u0026\u0026 {view.params.rowData.OPN} \u003d Null, False, True)"
+              },
+              "overlayOptOut": true,
+              "type": "expr"
+            }
+          },
+          "props.elements[0].fill.paint": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.rowData.CLS} \u0026\u0026 !{view.params.rowData.OPN},\"var(--color-label-1)\",\r\nif(!{view.params.rowData.CLS} \u0026\u0026 {view.params.rowData.OPN},\"none\",\r\n\"#BEBEBE\"))"
+              },
+              "overlayOptOut": true,
+              "type": "expr"
+            }
+          },
+          "props.elements[2].fill.paint": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.rowData.CLS} \u0026\u0026 !{view.params.rowData.OPN},\"var(--color-label-1)\",\r\nif(!{view.params.rowData.CLS} \u0026\u0026 {view.params.rowData.OPN},\"none\",\r\n\"#BEBEBE\"))"
+              },
+              "overlayOptOut": true,
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "elements": [
+            {
+              "fill": {
+                "opacity": "1"
+              },
+              "height": "1.7165389",
+              "name": "head",
+              "ry": "0.24649049",
+              "stroke": {
+                "dasharray": "none",
+                "miterlimit": "4",
+                "opacity": "1",
+                "paint": "var(--color-label-1)",
+                "width": 0.34575281
+              },
+              "style": {},
+              "type": "rect",
+              "width": "2.6168015",
+              "x": "1.3586059",
+              "y": "0.44781095"
+            },
+            {
+              "d": "M 2.6916634,4.14377 V 2.1195287",
+              "fill": {
+                "opacity": "1",
+                "paint": "#6a6d6e"
+              },
+              "name": "shaft",
+              "stroke": {
+                "dasharray": "none",
+                "linecap": "butt",
+                "miterlimit": "4",
+                "opacity": "1",
+                "paint": "var(--color-label-1)",
+                "width": 0.39687505
+              },
+              "style": {},
+              "type": "path"
+            },
+            {
+              "d": "M 0.94381443,3.2492367 V 4.9873159 L 2.691806,4.1181368 Z M 2.691806,4.1181368 4.4400637,4.9873159 V 3.2492367 Z",
+              "fill": {
+                "opacity": "1"
+              },
+              "name": "body",
+              "stroke": {
+                "dasharray": "none",
+                "linecap": "round",
+                "miterlimit": "4",
+                "opacity": "1",
+                "paint": "var(--color-label-1)",
+                "width": 0.39687505
+              },
+              "style": {},
+              "type": "path"
+            }
+          ],
+          "style": {
+            "color": "#FFA800"
+          },
+          "viewBox": "0 0 5.2916665 5.2916679"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "meta": {
+          "name": "No Data icon"
+        },
+        "position": {
+          "height": 24,
+          "width": 24,
+          "x": 0.9956,
+          "y": -0.99952
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.rowData.CLS} \u003d Null \u0026\u0026 {view.params.rowData.OPN} \u003d Null, True, False)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "color": "--color-label-1",
+          "path": "material/disc_full",
+          "style": {
+            "classes": "Button/icon",
+            "cursor": "pointer",
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.display.icon"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "cursor": "pointer",
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

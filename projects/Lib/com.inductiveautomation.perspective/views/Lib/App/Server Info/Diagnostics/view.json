@@ -1,0 +1,5326 @@
+{
+  "custom": {
+    "lastDays": -8
+  },
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 953,
+      "width": 1446
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Title"
+                },
+                "position": {
+                  "basis": "42px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "form-header",
+                    "margin-bottom": "5px"
+                  },
+                  "text": "System Performance"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "System Name"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/SystemName"
+                          },
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "System Name"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Uptime"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/UptimeSeconds"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "numberFormat(floor({value} / 3600), \"00\") + \":\" +\r\nnumberFormat(floor(({value} % 3600) / 60), \"00\") + \":\" + \r\nnumberFormat(floor((({value} % 3600) % 60)), \"00\")",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Uptime Seconds"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Timezone"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/Timezone"
+                          },
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Timezone"
+                },
+                "position": {
+                  "display": false,
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Current Date/Time"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/CurrentDateTime"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "dateFormat({value}, \"yyyy-MM-dd hh:mm:ss a\")",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Current Date Time"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Gateway Address"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.gateway.address"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Gateway Address"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Gateway Connected"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "basis": "30px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.style.backgroundColor": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.gateway.connected"
+                          },
+                          "transforms": [
+                            {
+                              "fallback": "#808080",
+                              "inputType": "scalar",
+                              "mappings": [
+                                {
+                                  "input": false,
+                                  "output": "#D90000"
+                                },
+                                {
+                                  "input": true,
+                                  "output": "#00AC00"
+                                }
+                              ],
+                              "outputType": "color",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      },
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.gateway.connected"
+                          },
+                          "transforms": [
+                            {
+                              "fallback": "No",
+                              "inputType": "scalar",
+                              "mappings": [
+                                {
+                                  "input": false,
+                                  "output": "No"
+                                },
+                                {
+                                  "input": true,
+                                  "output": "Yes"
+                                }
+                              ],
+                              "outputType": "scalar",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "borderRadius": "4px",
+                        "classes": "Framework/Card/Value",
+                        "color": "#FFFFFF",
+                        "textAlign": "center"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Gateway Connected"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Available Disk Space"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/Performance/Available Disk Space (MB)"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "numberFormat(\r\n\tif({value} \u003e\u003d 1024*1024, {value} / (1024*1024),\r\n\tif({value} \u003e\u003d 1024, {value} / 1024,\r\n\t{value})),\r\n\"#,##0.##\")  + \r\n\r\nif({value} \u003e\u003d 1024*1024, \"TB\",\r\nif({value} \u003e\u003d 1024, \"GB\",\r\n\"MB\")) ",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Disk Space"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Disk Utilization"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "basis": "55px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.style.backgroundColor": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/Performance/CPU Usage"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "{value} * 100.0",
+                              "type": "expression"
+                            },
+                            {
+                              "fallback": "#808080",
+                              "inputType": "range",
+                              "mappings": [
+                                {
+                                  "input": {
+                                    "max": 70,
+                                    "min": 0
+                                  },
+                                  "output": "#00AC00"
+                                },
+                                {
+                                  "input": {
+                                    "max": 80,
+                                    "min": 70
+                                  },
+                                  "output": "#D9D900"
+                                },
+                                {
+                                  "input": {
+                                    "max": 100,
+                                    "min": 90
+                                  },
+                                  "output": "#D90000"
+                                }
+                              ],
+                              "outputType": "color",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      },
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/Performance/Disk Utilization"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "numberFormat({value}, \"##0.##%\")",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "borderRadius": "4px",
+                        "classes": "Framework/Card/Value",
+                        "color": "#FFFFFF",
+                        "textAlign": "center"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Disk Utilization"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "CPU Usage"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "basis": "55px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.style.backgroundColor": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/Performance/CPU Usage"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "{value} * 100.0",
+                              "type": "expression"
+                            },
+                            {
+                              "fallback": "#808080",
+                              "inputType": "range",
+                              "mappings": [
+                                {
+                                  "input": {
+                                    "max": 70,
+                                    "min": 0
+                                  },
+                                  "output": "#00AC00"
+                                },
+                                {
+                                  "input": {
+                                    "max": 80,
+                                    "min": 70
+                                  },
+                                  "output": "#D9D900"
+                                },
+                                {
+                                  "input": {
+                                    "max": 100,
+                                    "min": 90
+                                  },
+                                  "output": "#D90000"
+                                }
+                              ],
+                              "outputType": "color",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      },
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[default]System/CPU Usage"
+                          },
+                          "overlayOptOut": true,
+                          "transforms": [
+                            {
+                              "expression": "{value} + \u0027%\u0027",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "borderRadius": "4px",
+                        "classes": "Framework/Card/Value",
+                        "color": "#FFFFFF",
+                        "textAlign": "center"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "CPU Usage"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "events": {
+                      "dom": {
+                        "onMouseLeave": {
+                          "config": {
+                            "script": "\tself.view.custom.lastDays \u003d self.props.value * -1\t"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        },
+                        "onMouseUp": {
+                          "config": {
+                            "script": "\tself.view.custom.lastDays \u003d self.props.value * -1\t\t"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        },
+                        "onTouchEnd": {
+                          "config": {
+                            "script": "\tself.view.custom.lastDays \u003d self.props.value * -1\t"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Slider",
+                      "visible": false
+                    },
+                    "position": {
+                      "basis": "0%"
+                    },
+                    "propConfig": {
+                      "props.max": {
+                        "binding": {
+                          "config": {
+                            "path": "parent.custom.max"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.min": {
+                        "binding": {
+                          "config": {
+                            "path": "parent.custom.min"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.value": {
+                        "onChange": {
+                          "enabled": null,
+                          "script": "\tself.parent.custom.range \u003d self.props.value"
+                        },
+                        "persistent": false
+                      }
+                    },
+                    "props": {
+                      "railColor": "#3D4D5A82",
+                      "style": {
+                        "classes": "map-slider",
+                        "margin": "0 10px",
+                        "transition": "0.8s"
+                      },
+                      "trackColor": "#D4D4D4"
+                    },
+                    "type": "ia.input.slider"
+                  },
+                  {
+                    "meta": {
+                      "name": "Well NO Label_0"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "../Slider.props.value"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "\"-\"+ {value} + \"h\"",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "color": "--color-label-2",
+                        "fontSize": "12px",
+                        "fontWeight": "normal",
+                        "margin-right": 3,
+                        "textAlign": "right"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "\tif self.getSibling(\"Slider\").meta.visible:\n\t\tself.getSibling(\"Slider\").position.basis \u003d \"0%\"\n\telse:\n\t\tself.getSibling(\"Slider\").position.basis \u003d \"100%\"\n\n\tself.getSibling(\"Slider\").meta.visible \u003d not self.getSibling(\"Slider\").meta.visible\n\t\t "
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Date Range_1",
+                      "tooltip": {
+                        "enabled": true,
+                        "location": "bottom",
+                        "text": "Click To Set\nHistory Range"
+                      }
+                    },
+                    "position": {
+                      "basis": "24px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "path": "material/history",
+                      "style": {
+                        "classes": "map-icon",
+                        "cursor": "pointer",
+                        "margin-right": 0
+                      }
+                    },
+                    "type": "ia.display.icon"
+                  }
+                ],
+                "custom": {
+                  "max": 24,
+                  "min": 1,
+                  "range": 1
+                },
+                "meta": {
+                  "name": "RangeSelector"
+                },
+                "propConfig": {
+                  "position.rotate": {
+                    "binding": {
+                      "config": {
+                        "path": ""
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "justify": "flex-end",
+                  "style": {
+                    "margin": "5px 5px -30px 40px",
+                    "overflow": "hidden",
+                    "z-index": "999999999999999999999999999999"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "meta": {
+                  "name": "TimeSeriesChart"
+                },
+                "position": {
+                  "basis": "170px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.series[0].data": {
+                    "binding": {
+                      "config": {
+                        "aggregate": "LastValue",
+                        "avoidScanClassValidation": true,
+                        "dateRange": {
+                          "mostRecent": "{../RangeSelector.custom.range}",
+                          "mostRecentUnits": "HOUR"
+                        },
+                        "enableValueCache": true,
+                        "ignoreBadQuality": false,
+                        "polling": {
+                          "enabled": true,
+                          "rate": "5"
+                        },
+                        "preventInterpolation": false,
+                        "returnFormat": "Wide",
+                        "returnSize": {
+                          "numRows": "500",
+                          "type": "FIXED"
+                        },
+                        "tags": [
+                          {
+                            "path": "[default]System/CPU Usage"
+                          }
+                        ],
+                        "valueFormat": "DATASET"
+                      },
+                      "overlayOptOut": true,
+                      "type": "tag-history"
+                    }
+                  }
+                },
+                "props": {
+                  "plots": [
+                    {
+                      "axes": [
+                        {
+                          "alignment": "left",
+                          "label": {
+                            "font": {
+                              "color": "",
+                              "size": 10
+                            },
+                            "offset": 0,
+                            "style": {
+                              "classes": ""
+                            },
+                            "text": "",
+                            "visible": true
+                          },
+                          "max": "",
+                          "min": "",
+                          "name": "Y",
+                          "style": {
+                            "classes": ""
+                          },
+                          "tick": {
+                            "color": "",
+                            "label": {
+                              "font": {
+                                "color": "",
+                                "size": 10
+                              },
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "style": {
+                              "classes": ""
+                            }
+                          },
+                          "width": 30
+                        }
+                      ],
+                      "markers": [
+                        {
+                          "axis": "Y",
+                          "line": {
+                            "color": "#FA0505",
+                            "dashArray": "2 2",
+                            "label": {
+                              "font": {
+                                "color": "#E20707",
+                                "size": 10
+                              },
+                              "position": "right",
+                              "style": {
+                                "classes": "",
+                                "fontWeight": "bold"
+                              },
+                              "text": "Warning"
+                            },
+                            "opacity": 0.5,
+                            "style": {
+                              "classes": ""
+                            },
+                            "width": 1
+                          },
+                          "type": "line",
+                          "value": 60,
+                          "visible": true
+                        }
+                      ],
+                      "relativeWeight": 1,
+                      "trends": [
+                        {
+                          "axis": "Y",
+                          "baselines": [],
+                          "breakLine": true,
+                          "columns": [
+                            {
+                              "color": "var(--color-blue)",
+                              "key": "CPU Usage",
+                              "styles": {
+                                "highlighted": {
+                                  "fill": {
+                                    "color": "",
+                                    "opacity": null
+                                  },
+                                  "stroke": {
+                                    "color": "",
+                                    "dashArray": null,
+                                    "opacity": null,
+                                    "width": null
+                                  }
+                                },
+                                "muted": {
+                                  "fill": {
+                                    "color": "",
+                                    "opacity": null
+                                  },
+                                  "stroke": {
+                                    "color": "",
+                                    "dashArray": null,
+                                    "opacity": null,
+                                    "width": null
+                                  }
+                                },
+                                "normal": {
+                                  "fill": {
+                                    "color": "",
+                                    "opacity": null
+                                  },
+                                  "stroke": {
+                                    "color": "",
+                                    "dashArray": "",
+                                    "opacity": 1,
+                                    "width": 1
+                                  }
+                                },
+                                "selected": {
+                                  "fill": {
+                                    "color": "",
+                                    "opacity": null
+                                  },
+                                  "stroke": {
+                                    "color": "",
+                                    "dashArray": null,
+                                    "opacity": null,
+                                    "width": null
+                                  }
+                                }
+                              }
+                            }
+                          ],
+                          "interpolation": "curveStep",
+                          "radius": 2,
+                          "series": "CPU",
+                          "stack": false,
+                          "type": "line",
+                          "visible": true
+                        }
+                      ]
+                    }
+                  ],
+                  "series": [
+                    {
+                      "name": "CPU"
+                    }
+                  ],
+                  "style": {
+                    "margin-bottom": -10
+                  },
+                  "timeRange": {
+                    "visible": false
+                  },
+                  "xTrace": {
+                    "infoBox": {
+                      "fill": {
+                        "opacity": 0
+                      }
+                    }
+                  }
+                },
+                "type": "ia.chart.timeseries"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "System Memory"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "expression": "{[default]System/Max Memory}/1024"
+                          },
+                          "transforms": [
+                            {
+                              "formatType": "numeric",
+                              "formatValue": "##.0 GB",
+                              "type": "format"
+                            }
+                          ],
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Max Memory"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Memory Available"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[default]System/Free Memory"
+                          },
+                          "overlayOptOut": true,
+                          "transforms": [
+                            {
+                              "expression": "{value}/1024",
+                              "type": "expression"
+                            },
+                            {
+                              "formatType": "numeric",
+                              "formatValue": "##.0 GB",
+                              "type": "format"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Memory Available_0"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Memory Usage"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[default]System/Used Memory"
+                          },
+                          "overlayOptOut": true,
+                          "transforms": [
+                            {
+                              "expression": "{value}/1024",
+                              "type": "expression"
+                            },
+                            {
+                              "formatType": "numeric",
+                              "formatValue": "##.0 GB",
+                              "type": "format"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Memory Available"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "meta": {
+                  "name": "PieChart"
+                },
+                "position": {
+                  "basis": 270,
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.data[0].count": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[System]Gateway/Performance/Memory Usage"
+                      },
+                      "type": "tag"
+                    }
+                  },
+                  "props.data[1].count": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]System/Used Memory"
+                      },
+                      "transforms": [
+                        {
+                          "expression": "{value} - {[System]Gateway/Performance/Memory Usage}",
+                          "type": "expression"
+                        }
+                      ],
+                      "type": "tag"
+                    }
+                  },
+                  "props.data[2].count": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[default]System/Free Memory"
+                      },
+                      "type": "tag"
+                    }
+                  }
+                },
+                "props": {
+                  "colors": [
+                    "#FFFFFF",
+                    "#42D9D9",
+                    "#8BA6C112",
+                    "#91C0D0",
+                    "#63A6BD",
+                    "#3989A4",
+                    "#42D9D9"
+                  ],
+                  "data": [
+                    {
+                      "flavor": "Ignition"
+                    },
+                    {
+                      "flavor": "Others"
+                    },
+                    {
+                      "flavor": "Free"
+                    }
+                  ],
+                  "labels": {
+                    "align": false,
+                    "bent": true,
+                    "inside": {
+                      "radius": 70
+                    }
+                  },
+                  "legend": {
+                    "fontSize": 12,
+                    "icon": {
+                      "height": 15,
+                      "width": 15
+                    }
+                  },
+                  "legendLabelColor": "#AAAAAA",
+                  "showLabels": false
+                },
+                "type": "ia.chart.pie"
+              }
+            ],
+            "meta": {
+              "name": "System Performance"
+            },
+            "position": {
+              "basis": "400px",
+              "grow": 1,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "classes": "dashboard-card",
+                "margin": "6px 0 0 6px",
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Title"
+                },
+                "position": {
+                  "basis": "42px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "form-header",
+                    "margin-bottom": "5px"
+                  },
+                  "text": "Ignition Performance"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "CPU Usage"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "basis": "55px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.style.backgroundColor": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/Performance/CPU Usage"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "{value} * 100.0",
+                              "type": "expression"
+                            },
+                            {
+                              "fallback": "#808080",
+                              "inputType": "range",
+                              "mappings": [
+                                {
+                                  "input": {
+                                    "max": 70,
+                                    "min": 0
+                                  },
+                                  "output": "#00AC00"
+                                },
+                                {
+                                  "input": {
+                                    "max": 80,
+                                    "min": 70
+                                  },
+                                  "output": "#D9D900"
+                                },
+                                {
+                                  "input": {
+                                    "max": 100,
+                                    "min": 90
+                                  },
+                                  "output": "#D90000"
+                                }
+                              ],
+                              "outputType": "color",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      },
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/Performance/CPU Usage"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "numberFormat({value}, \"##0.##%\")",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "borderRadius": "4px",
+                        "classes": "Framework/Card/Value",
+                        "color": "#FFFFFF",
+                        "textAlign": "center"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "CPU Usage"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Max Memory"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/Performance/Max Memory"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "numberFormat(\r\n\tif({value} \u003e\u003d 1024*1024, {value} / (1024*1024),\r\n\tif({value} \u003e\u003d 1024, {value} / 1024,\r\n\t{value})),\r\n\"#,##0.##\")  + \r\n\r\nif({value} \u003e\u003d 1024*1024, \"TB\",\r\nif({value} \u003e\u003d 1024, \"GB\",\r\n\"MB\"))",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Max Memory"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Memory Usage"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/Performance/Memory Usage"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "numberFormat(\r\n\tif({value} \u003e\u003d 1024*1024, {value} / (1024*1024),\r\n\tif({value} \u003e\u003d 1024, {value} / 1024,\r\n\t{value})),\r\n\"#,##0.##\")  + \r\n\r\nif({value} \u003e\u003d 1024*1024, \"TB\",\r\nif({value} \u003e\u003d 1024, \"GB\",\r\n\"MB\"))",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Memory Usage"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Memory Utilization"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "basis": "55px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.style.backgroundColor": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/Performance/CPU Usage"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "{value} * 100.0",
+                              "type": "expression"
+                            },
+                            {
+                              "fallback": "#808080",
+                              "inputType": "range",
+                              "mappings": [
+                                {
+                                  "input": {
+                                    "max": 70,
+                                    "min": 0
+                                  },
+                                  "output": "#00AC00"
+                                },
+                                {
+                                  "input": {
+                                    "max": 80,
+                                    "min": 70
+                                  },
+                                  "output": "#D9D900"
+                                },
+                                {
+                                  "input": {
+                                    "max": 100,
+                                    "min": 90
+                                  },
+                                  "output": "#D90000"
+                                }
+                              ],
+                              "outputType": "color",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      },
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/Performance/Memory Utilization"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "numberFormat({value}, \"##0.##%\")",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "borderRadius": "4px",
+                        "classes": "Framework/Card/Value",
+                        "color": "#FFFFFF",
+                        "textAlign": "center"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Memory Utilization"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "meta": {
+                  "name": "TimeSeriesChart"
+                },
+                "position": {
+                  "basis": "160px",
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.plots[0].markers[0].value": {
+                    "binding": {
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "direct",
+                        "tagPath": "[System]Gateway/Performance/Max Memory"
+                      },
+                      "transforms": [
+                        {
+                          "expression": "{value} * 0.8",
+                          "type": "expression"
+                        }
+                      ],
+                      "type": "tag"
+                    }
+                  },
+                  "props.series[0].data": {
+                    "binding": {
+                      "config": {
+                        "aggregate": "LastValue",
+                        "avoidScanClassValidation": true,
+                        "dateRange": {
+                          "mostRecent": "{.../System Performance/RangeSelector.custom.range}",
+                          "mostRecentUnits": "HOUR"
+                        },
+                        "enableValueCache": true,
+                        "ignoreBadQuality": false,
+                        "polling": {
+                          "enabled": true,
+                          "rate": "5"
+                        },
+                        "preventInterpolation": false,
+                        "returnFormat": "Wide",
+                        "returnSize": {
+                          "numRows": "500",
+                          "type": "FIXED"
+                        },
+                        "tags": [
+                          {
+                            "path": "[System]Gateway/Performance/Memory Usage"
+                          }
+                        ],
+                        "valueFormat": "DATASET"
+                      },
+                      "overlayOptOut": true,
+                      "type": "tag-history"
+                    }
+                  }
+                },
+                "props": {
+                  "plots": [
+                    {
+                      "axes": [
+                        {
+                          "alignment": "left",
+                          "label": {
+                            "font": {
+                              "color": "",
+                              "size": 10
+                            },
+                            "offset": 0,
+                            "style": {
+                              "classes": ""
+                            },
+                            "text": "",
+                            "visible": true
+                          },
+                          "max": "",
+                          "min": "",
+                          "name": "Y",
+                          "style": {
+                            "classes": ""
+                          },
+                          "tick": {
+                            "color": "",
+                            "label": {
+                              "font": {
+                                "color": "",
+                                "size": 10
+                              },
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "style": {
+                              "classes": ""
+                            }
+                          },
+                          "width": 30
+                        }
+                      ],
+                      "markers": [
+                        {
+                          "axis": "Y",
+                          "line": {
+                            "color": "#FA0505",
+                            "dashArray": "2 2",
+                            "label": {
+                              "font": {
+                                "color": "#AC0000",
+                                "size": 10
+                              },
+                              "position": "right",
+                              "style": {
+                                "classes": ""
+                              },
+                              "text": "Warning"
+                            },
+                            "opacity": 0.5,
+                            "style": {
+                              "classes": ""
+                            },
+                            "width": 1
+                          },
+                          "type": "line",
+                          "visible": true
+                        }
+                      ],
+                      "relativeWeight": 1,
+                      "trends": [
+                        {
+                          "axis": "Y",
+                          "baselines": [],
+                          "breakLine": true,
+                          "columns": [
+                            {
+                              "color": "var(--color-blue)",
+                              "key": "Memory Usage",
+                              "styles": {
+                                "highlighted": {
+                                  "fill": {
+                                    "color": "",
+                                    "opacity": null
+                                  },
+                                  "stroke": {
+                                    "color": "",
+                                    "dashArray": null,
+                                    "opacity": null,
+                                    "width": null
+                                  }
+                                },
+                                "muted": {
+                                  "fill": {
+                                    "color": "",
+                                    "opacity": null
+                                  },
+                                  "stroke": {
+                                    "color": "",
+                                    "dashArray": null,
+                                    "opacity": null,
+                                    "width": null
+                                  }
+                                },
+                                "normal": {
+                                  "fill": {
+                                    "color": "",
+                                    "opacity": null
+                                  },
+                                  "stroke": {
+                                    "color": "",
+                                    "dashArray": "",
+                                    "opacity": 1,
+                                    "width": 1
+                                  }
+                                },
+                                "selected": {
+                                  "fill": {
+                                    "color": "",
+                                    "opacity": null
+                                  },
+                                  "stroke": {
+                                    "color": "",
+                                    "dashArray": null,
+                                    "opacity": null,
+                                    "width": null
+                                  }
+                                }
+                              }
+                            }
+                          ],
+                          "interpolation": "curveStep",
+                          "radius": 2,
+                          "series": "Memory",
+                          "stack": false,
+                          "type": "line",
+                          "visible": true
+                        }
+                      ]
+                    }
+                  ],
+                  "series": [
+                    {
+                      "name": "Memory"
+                    }
+                  ],
+                  "style": {
+                    "margin-bottom": -20
+                  },
+                  "timeRange": {
+                    "visible": false
+                  },
+                  "xTrace": {
+                    "infoBox": {
+                      "fill": {
+                        "opacity": 0
+                      }
+                    }
+                  }
+                },
+                "type": "ia.chart.timeseries"
+              }
+            ],
+            "meta": {
+              "name": "Ignition Performance"
+            },
+            "position": {
+              "basis": "200px",
+              "grow": 1,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "classes": "dashboard-card",
+                "margin": "6px 0 0 6px",
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "1st column"
+        },
+        "position": {
+          "basis": "280px",
+          "grow": 1,
+          "shrink": 0
+        },
+        "props": {
+          "alignContent": "space-around",
+          "direction": "column",
+          "style": {
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Title"
+                },
+                "position": {
+                  "basis": "42px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "form-header",
+                    "margin-bottom": "5px"
+                  },
+                  "text": "Session Info"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Id"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.id"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Id"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Host"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.host"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Host"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Locale"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.locale"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Locale"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Timezone"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.timeZoneId"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Timezone"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Theme"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.theme"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Theme"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Authenticated"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "basis": "30px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.style.backgroundColor": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.auth.authenticated"
+                          },
+                          "transforms": [
+                            {
+                              "fallback": "#808080",
+                              "inputType": "scalar",
+                              "mappings": [
+                                {
+                                  "input": false,
+                                  "output": "#D9D900"
+                                },
+                                {
+                                  "input": true,
+                                  "output": "#00AC00"
+                                }
+                              ],
+                              "outputType": "color",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      },
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.auth.authenticated"
+                          },
+                          "transforms": [
+                            {
+                              "fallback": "No",
+                              "inputType": "scalar",
+                              "mappings": [
+                                {
+                                  "input": false,
+                                  "output": "No"
+                                },
+                                {
+                                  "input": true,
+                                  "output": "Yes"
+                                }
+                              ],
+                              "outputType": "scalar",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "borderRadius": "4px",
+                        "classes": "Framework/Card/Value",
+                        "color": "#FFFFFF",
+                        "textAlign": "center"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Authenticated"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "User"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "expression": "{session.props.auth.user.firstName} + \" \" + {session.props.auth.user.lastName}"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "User"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Username"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.auth.user.userName"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "coalesce({value}, \"--\")",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Username"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Email"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.auth.user.email"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "coalesce({value}, \"--\")",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Email"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "User Id"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "expression": "coalesce({value}, \"--\")"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "User Id"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Roles"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.instances": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.auth.user.roles"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\tinstances \u003d []\n\tif value !\u003d None:\n\t\tfor role in value:\n\t\t\tinstances.append({\"value\":role, \"align\":\"end\"})\n\treturn instances",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "direction": "column",
+                      "elementPosition": {
+                        "basis": "auto",
+                        "grow": 0,
+                        "shrink": 0
+                      },
+                      "path": "Lib/App/Server Info/Embedded/Label",
+                      "useDefaultViewHeight": false,
+                      "useDefaultViewWidth": false
+                    },
+                    "type": "ia.display.flex-repeater"
+                  }
+                ],
+                "meta": {
+                  "name": "Roles"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Security Levels"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.auth.securityLevels"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\timport json\n\ttry:\n\t\treturn json.dumps(json.loads(str(value)), indent\u003d4)\n\texcept:\n\t\treturn \"{}\" if value \u003d\u003d None or len(value) \u003d\u003d 0 else value",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "enabled": false,
+                      "style": {
+                        "backgroundColor": "--color-bk-3",
+                        "border-style": "none",
+                        "color": "--color-label-0",
+                        "fontFamily": "monospace",
+                        "fontSize": 12,
+                        "margin": 5
+                      },
+                      "wrap": "off"
+                    },
+                    "type": "ia.input.text-area"
+                  }
+                ],
+                "meta": {
+                  "name": "Security Levels"
+                },
+                "position": {
+                  "basis": "176px",
+                  "grow": 1,
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "column",
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "Session"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "classes": "dashboard-card",
+                "margin": "6px 0 0 6px",
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Databases"
+                },
+                "position": {
+                  "basis": "42px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "form-header",
+                    "margin-bottom": "5px"
+                  },
+                  "text": "Databases"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "FlexRepeater"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "expression": "now(0)"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tinstances \u003d []\n\tres \u003d system.tag.browse(path\u003d\"[System]Gateway/Database\")\n\tfor result in res.getResults():\n\t\tinstances.append({\"database\":result[\"name\"]})\n\treturn instances",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "basis": "auto",
+                    "grow": 0,
+                    "shrink": 0
+                  },
+                  "path": "Lib/App/Server Info/Embedded/Database",
+                  "useDefaultViewHeight": false,
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Databases"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "classes": "dashboard-card",
+                "margin": "6px 0 0 6px",
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "2st column"
+        },
+        "position": {
+          "basis": "280px",
+          "grow": 1,
+          "shrink": 0
+        },
+        "props": {
+          "alignContent": "space-around",
+          "direction": "column",
+          "style": {
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Title"
+                },
+                "position": {
+                  "basis": "42px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "form-header",
+                    "margin-bottom": "5px"
+                  },
+                  "text": "Redundancy"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Activity Level"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/Redundancy/ActivityLevel"
+                          },
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Activity Level"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Role"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/Redundancy/Role"
+                          },
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Role"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Is Active"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "basis": "30px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.style.backgroundColor": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/Redundancy/IsActive"
+                          },
+                          "transforms": [
+                            {
+                              "fallback": "#808080",
+                              "inputType": "scalar",
+                              "mappings": [
+                                {
+                                  "input": false,
+                                  "output": "#808080"
+                                },
+                                {
+                                  "input": true,
+                                  "output": "#00AC00"
+                                }
+                              ],
+                              "outputType": "color",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      },
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/Redundancy/IsActive"
+                          },
+                          "transforms": [
+                            {
+                              "fallback": "No",
+                              "inputType": "scalar",
+                              "mappings": [
+                                {
+                                  "input": false,
+                                  "output": "No"
+                                },
+                                {
+                                  "input": true,
+                                  "output": "Yes"
+                                }
+                              ],
+                              "outputType": "scalar",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "borderRadius": "4px",
+                        "classes": "Framework/Card/Value",
+                        "color": "#FFFFFF",
+                        "textAlign": "center"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Is Active"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Is Master"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "basis": "30px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.style.backgroundColor": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/Redundancy/IsMaster"
+                          },
+                          "transforms": [
+                            {
+                              "fallback": "#808080",
+                              "inputType": "scalar",
+                              "mappings": [
+                                {
+                                  "input": false,
+                                  "output": "#808080"
+                                },
+                                {
+                                  "input": true,
+                                  "output": "#00AC00"
+                                }
+                              ],
+                              "outputType": "color",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      },
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/Redundancy/IsMaster"
+                          },
+                          "transforms": [
+                            {
+                              "fallback": "No",
+                              "inputType": "scalar",
+                              "mappings": [
+                                {
+                                  "input": false,
+                                  "output": "No"
+                                },
+                                {
+                                  "input": true,
+                                  "output": "Yes"
+                                }
+                              ],
+                              "outputType": "scalar",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "borderRadius": "4px",
+                        "classes": "Framework/Card/Value",
+                        "color": "#FFFFFF",
+                        "textAlign": "center"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Is Master"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Peer Id"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/Redundancy/Connection/PeerId"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "coalesce({value}, \"--\")",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Peer Id"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Peer Connected"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "basis": "30px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.style.backgroundColor": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/Redundancy/Connection/IsConnected"
+                          },
+                          "transforms": [
+                            {
+                              "fallback": "#808080",
+                              "inputType": "scalar",
+                              "mappings": [
+                                {
+                                  "input": false,
+                                  "output": "#D90000"
+                                },
+                                {
+                                  "input": true,
+                                  "output": "#00AC00"
+                                }
+                              ],
+                              "outputType": "color",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      },
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "fallbackDelay": 2.5,
+                            "mode": "direct",
+                            "tagPath": "[System]Gateway/Redundancy/Connection/IsConnected"
+                          },
+                          "transforms": [
+                            {
+                              "fallback": "No",
+                              "inputType": "scalar",
+                              "mappings": [
+                                {
+                                  "input": false,
+                                  "output": "No"
+                                },
+                                {
+                                  "input": true,
+                                  "output": "Yes"
+                                }
+                              ],
+                              "outputType": "scalar",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "tag"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "borderRadius": "4px",
+                        "classes": "Framework/Card/Value",
+                        "color": "#FFFFFF",
+                        "textAlign": "center"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Peer Connected"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "Redundancy"
+            },
+            "position": {
+              "grow": 1,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "classes": "dashboard-card",
+                "margin": "6px 0 0px 6px",
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Title"
+                },
+                "position": {
+                  "basis": "42px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "form-header",
+                    "margin-bottom": "5px"
+                  },
+                  "text": "Device Data"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Type"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.device.type"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Type"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Id"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "basis": "150px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.device.identifier"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value",
+                        "overflow": "auto",
+                        "overflowWrap": "break-word",
+                        "textAlign": "end"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Id"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "User Agent"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "basis": "150px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.device.userAgent"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value",
+                        "overflow": "auto",
+                        "overflowWrap": "break-word",
+                        "textAlign": "end"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "User Agent"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Accelerometer"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "basis": "30px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.style.backgroundColor": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.device.accelerometer.timestamp"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "if({value} \u003d 0, false, true)",
+                              "type": "expression"
+                            },
+                            {
+                              "fallback": "#808080",
+                              "inputType": "scalar",
+                              "mappings": [
+                                {
+                                  "input": false,
+                                  "output": "#808080"
+                                },
+                                {
+                                  "input": true,
+                                  "output": "#00AC00"
+                                }
+                              ],
+                              "outputType": "color",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      },
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.device.accelerometer.timestamp"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "if({value} \u003d 0, false, true)",
+                              "type": "expression"
+                            },
+                            {
+                              "fallback": "No",
+                              "inputType": "scalar",
+                              "mappings": [
+                                {
+                                  "input": false,
+                                  "output": "No"
+                                },
+                                {
+                                  "input": true,
+                                  "output": "Yes"
+                                }
+                              ],
+                              "outputType": "scalar",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "borderRadius": "4px",
+                        "classes": "Framework/Card/Value",
+                        "color": "#FFFFFF",
+                        "textAlign": "center"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Accelerometer"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Accelerometer Update"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.device.accelerometer.timestamp"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "if({value} \u003d 0, \"--\", dateFormat({value}, \"yyyy-MM-dd hh:mm:ss a\"))",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Accelerometer Time"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Accelerometer X"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.device.accelerometer.x"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "numberFormat({value}, \"#,##0.##\")",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Accelerometer X"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Accelerometer Y"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.device.accelerometer.y"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "numberFormat({value}, \"#,##0.##\")",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Accelerometer Y"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Accelerometer Z"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.device.accelerometer.z"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "numberFormat({value}, \"#,##0.##\")",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Accelerometer Z"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Bluetooth"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "basis": "30px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.style.backgroundColor": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.bluetooth.enabled"
+                          },
+                          "transforms": [
+                            {
+                              "fallback": "#808080",
+                              "inputType": "scalar",
+                              "mappings": [
+                                {
+                                  "input": false,
+                                  "output": "#808080"
+                                },
+                                {
+                                  "input": true,
+                                  "output": "#00AC00"
+                                }
+                              ],
+                              "outputType": "color",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      },
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.bluetooth.enabled"
+                          },
+                          "transforms": [
+                            {
+                              "fallback": "No",
+                              "inputType": "scalar",
+                              "mappings": [
+                                {
+                                  "input": false,
+                                  "output": "No"
+                                },
+                                {
+                                  "input": true,
+                                  "output": "Yes"
+                                }
+                              ],
+                              "outputType": "scalar",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "borderRadius": "4px",
+                        "classes": "Framework/Card/Value",
+                        "color": "#FFFFFF",
+                        "textAlign": "center"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Bluetooth"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Bluetooth Update Interval"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.bluetooth.options.updateInterval"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "numberFormat({value}, \"#,##0.##\") + \"ms\"",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Bluetooth Update Interval"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Bluetooth Limit"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.bluetooth.options.limit"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "numberFormat({value}, \"#,##0.##\")",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Bluetooth Limit"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Geolocation"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "basis": "30px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.style.backgroundColor": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.geolocation.enabled"
+                          },
+                          "transforms": [
+                            {
+                              "fallback": "#808080",
+                              "inputType": "scalar",
+                              "mappings": [
+                                {
+                                  "input": false,
+                                  "output": "#808080"
+                                },
+                                {
+                                  "input": true,
+                                  "output": "#00AC00"
+                                }
+                              ],
+                              "outputType": "color",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      },
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.geolocation.enabled"
+                          },
+                          "transforms": [
+                            {
+                              "fallback": "No",
+                              "inputType": "scalar",
+                              "mappings": [
+                                {
+                                  "input": false,
+                                  "output": "No"
+                                },
+                                {
+                                  "input": true,
+                                  "output": "Yes"
+                                }
+                              ],
+                              "outputType": "scalar",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "borderRadius": "4px",
+                        "classes": "Framework/Card/Value",
+                        "color": "#FFFFFF",
+                        "textAlign": "center"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Geolocation"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Geolocation Granted"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "basis": "30px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.style.backgroundColor": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.geolocation.permissionGranted"
+                          },
+                          "transforms": [
+                            {
+                              "fallback": "#808080",
+                              "inputType": "scalar",
+                              "mappings": [
+                                {
+                                  "input": false,
+                                  "output": "#D90000"
+                                },
+                                {
+                                  "input": true,
+                                  "output": "#00AC00"
+                                }
+                              ],
+                              "outputType": "color",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      },
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.geolocation.permissionGranted"
+                          },
+                          "transforms": [
+                            {
+                              "fallback": "No",
+                              "inputType": "scalar",
+                              "mappings": [
+                                {
+                                  "input": false,
+                                  "output": "No"
+                                },
+                                {
+                                  "input": true,
+                                  "output": "Yes"
+                                }
+                              ],
+                              "outputType": "scalar",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "borderRadius": "4px",
+                        "classes": "Framework/Card/Value",
+                        "color": "#FFFFFF",
+                        "textAlign": "center"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Geolocation Granted"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Geolocation Accuracy"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.geolocation.options.accuracy"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Geolocation Accuracy"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Geolocation Max Age"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.geolocation.options.maximumAge"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "numberFormat({value}, \"#,##0.##\")",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Geolocation Max Age"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Geolocation Update"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.geolocation.data.timestamp"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "if({value} \u003d null, \"--\", dateFormat({value}, \"yyyy-MM-dd hh:mm:ss a\"))",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Geolocation Update"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Geolocation Latitude"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.geolocation.data.latitude"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "if({value} \u003d null, \"--\", numberFormat({value}, \"#,##0.####\"))",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Geolocation Latitude"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Geolocation Longitude"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.geolocation.data.longitude"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "if({value} \u003d null, \"--\", numberFormat({value}, \"#,##0.####\"))",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Geolocation Longitude"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Geolocation Altitude"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.geolocation.data.altitude"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "if({value} \u003d null, \"--\", numberFormat({value}, \"#,##0.##\"))",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Geolocation Altitude"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Geolocation Accuracy"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.geolocation.data.accuracy"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "if({value} \u003d null, \"--\", numberFormat({value}, \"#,##0.##\"))",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Geolocation Accuracy_0"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Geolocation Altitude Accuracy"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.geolocation.data.altitudeAccuracy"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "if({value} \u003d null, \"--\", numberFormat({value}, \"#,##0.##\"))",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Geolocation Altitude Accuracy"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Geolocation Heading"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.geolocation.data.heading"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "if({value} \u003d null, \"--\", numberFormat({value}, \"#,##0.##\"))",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Geolocation Heading"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Label"
+                      },
+                      "text": "Geolocation Speed"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "Value"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.props.geolocation.data.speed"
+                          },
+                          "transforms": [
+                            {
+                              "expression": "if({value} \u003d null, \"--\", numberFormat({value}, \"#,##0.##\"))",
+                              "type": "expression"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Framework/Card/Value"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "Geolocation Speed"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Framework/Card/Row",
+                    "overflow": "hidden"
+                  },
+                  "wrap": "wrap"
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "Device"
+            },
+            "position": {
+              "grow": 1,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "classes": "dashboard-card",
+                "margin": "6px 0 0px 6px",
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "3th column"
+        },
+        "position": {
+          "basis": "280px",
+          "grow": 1,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Title"
+            },
+            "position": {
+              "basis": "42px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "form-header",
+                "margin-bottom": "5px"
+              },
+              "text": "OPC Servers"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "FlexRepeater"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.instances": {
+                "binding": {
+                  "config": {
+                    "expression": "now(0)"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tinstances \u003d []\n\tres \u003d system.tag.browse(path\u003d\"[System]Gateway/OPC/Connections\")\n\t\n\tfor result in res.getResults():\n\t\tif result[\"name\"] !\u003d \"Ignition OPC UA Server\" and result[\"name\"] !\u003d \"Ignition OPC UA Server 2\":\n\t\t\tinstances.append({\"server\":result[\"name\"]})\n\treturn instances",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "elementPosition": {
+                "basis": "auto",
+                "grow": 0,
+                "shrink": 0
+              },
+              "path": "Lib/App/Server Info/Embedded/OPC Server",
+              "useDefaultViewHeight": false,
+              "useDefaultViewWidth": false
+            },
+            "type": "ia.display.flex-repeater"
+          }
+        ],
+        "meta": {
+          "name": "OPC Servers"
+        },
+        "position": {
+          "basis": "280px",
+          "grow": 1,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "classes": "dashboard-card",
+            "margin": "6px 0 0 6px",
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Title"
+            },
+            "position": {
+              "basis": "42px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "form-header",
+                "margin-bottom": "5px"
+              },
+              "text": "OPC Devices"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "FlexRepeater"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.instances": {
+                "binding": {
+                  "config": {
+                    "expression": "now(60000)"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tinstances \u003d []\n\tres \u003d system.dataset.toPyDataSet(system.device.listDevices())\n\tfor result in res:\n\t\tinstances.append({\"name\":result[\"Name\"], \"enabled\":result[\"Enabled\"], \"state\":result[\"State\"], \"driver\":result[\"Driver\"]})\n\treturn instances",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "elementPosition": {
+                "basis": "auto",
+                "grow": 0,
+                "shrink": 0
+              },
+              "path": "Lib/App/Server Info/Embedded/OPC Device",
+              "useDefaultViewHeight": false,
+              "useDefaultViewWidth": false
+            },
+            "type": "ia.display.flex-repeater"
+          }
+        ],
+        "meta": {
+          "name": "OPC Devices"
+        },
+        "position": {
+          "basis": "280px",
+          "grow": 1,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "classes": "dashboard-card",
+            "margin": "6px 0 0 6px",
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "backgroundColor": "var(--color-base)",
+        "padding": "0 6px 6px 0"
+      },
+      "wrap": "wrap"
+    },
+    "type": "ia.container.flex"
+  }
+}

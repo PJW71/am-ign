@@ -1,0 +1,16 @@
+{
+  "scope": "G",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "data.bin"
+  ],
+  "attributes": {
+    "lastModification": {
+      "actor": "tamer.ahmed-salem@northvolt.com",
+      "timestamp": "2024-09-18T07:00:01Z"
+    },
+    "lastModificationSignature": "a46f2a2748f70e9190c363bf607ef16e95c7d1292aed6b32037e743a9aa10ad5"
+  }
+}

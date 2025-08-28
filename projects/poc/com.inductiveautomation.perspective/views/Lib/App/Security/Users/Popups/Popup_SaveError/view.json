@@ -1,0 +1,126 @@
+{
+  "custom": {},
+  "params": {
+    "badge": "",
+    "mode": "",
+    "notes": "",
+    "password": "",
+    "role": "",
+    "username": ""
+  },
+  "propConfig": {
+    "params.badge": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.mode": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.notes": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.password": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.role": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.username": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 215,
+      "width": 300
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Text"
+        },
+        "position": {
+          "basis": "200px"
+        },
+        "propConfig": {
+          "props.source": {
+            "binding": {
+              "config": {
+                "expression": "if(len({view.params.username}), \"+ \" + {view.params.username} + \"\\n\", \"\") +\r\nif(len({view.params.password}), \"+ \" + {view.params.password} + \"\\n\", \"\") +\r\nif(len({view.params.notes}),    \"+ \" + {view.params.notes}    + \"\\n\", \"\") +\r\nif(len({view.params.badge}),    \"+ \" + {view.params.badge}    + \"\\n\", \"\") +\r\nif(len({view.params.role}),     \"+ \" + {view.params.role}     + \"\\n\", \"\")"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "title-modern",
+            "fontWeight": 300,
+            "margin-left": "-20px",
+            "overflowWrap": "normal",
+            "textAlign": "left",
+            "textTransform": "capitalize"
+          }
+        },
+        "type": "ia.display.markdown"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "draggable": true,
+                "id": "UserManagement_SaveError",
+                "modal": false,
+                "overlayDismiss": false,
+                "resizable": true,
+                "showCloseIcon": true,
+                "type": "close",
+                "viewPath": "UserManagement/Views/Popup_SaveError"
+              },
+              "scope": "C",
+              "type": "popup"
+            }
+          }
+        },
+        "meta": {
+          "name": "Close"
+        },
+        "position": {
+          "basis": "35px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "fontSize": "14px",
+            "marginBottom": "10px",
+            "marginLeft": "80px",
+            "marginRight": "80px",
+            "marginTop": "10px"
+          },
+          "text": "Close"
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "padding": 5,
+        "textAlign": "center",
+        "textTransform": "uppercase"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

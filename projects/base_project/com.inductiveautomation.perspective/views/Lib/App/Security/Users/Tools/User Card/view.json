@@ -1,0 +1,513 @@
+{
+  "custom": {},
+  "params": {
+    "value": {
+      "firstName": "Nader",
+      "lastName": "Chinichian",
+      "schedule": "Always",
+      "username": "nader"
+    }
+  },
+  "propConfig": {
+    "custom.error": {
+      "binding": {
+        "config": {
+          "path": "/root/Name FlexContainer/Icon.custom.errorMessage"
+        },
+        "transforms": [
+          {
+            "fallback": true,
+            "inputType": "scalar",
+            "mappings": [
+              {
+                "input": "",
+                "output": false
+              }
+            ],
+            "outputType": "scalar",
+            "type": "map"
+          }
+        ],
+        "type": "property"
+      }
+    },
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 219,
+      "width": 546
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "First name Label"
+                },
+                "position": {
+                  "basis": "20px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "form-input3_label"
+                  },
+                  "text": "First Name"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Name"
+                },
+                "position": {
+                  "basis": "30px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.value.firstName"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "form-label"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "firstname Flex"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Lastname Label"
+                },
+                "position": {
+                  "basis": "20px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "form-input3_label"
+                  },
+                  "text": "Last Name"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lastName"
+                },
+                "position": {
+                  "basis": "30px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.value.lastName"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "form-label"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "lastName Flex"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "fullName Row"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "24px",
+              "shrink": 0
+            },
+            "props": {
+              "color": "--color-label-2",
+              "path": "material/date_range",
+              "style": {
+                "marginLeft": 8
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "name": "schedule"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.value.schedule"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "form-label"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "schedule Flex"
+        },
+        "position": {
+          "basis": "38px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "margin-bottom": 5
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Roles Contanct Flex"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Title"
+                },
+                "position": {
+                  "basis": "20px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "form-input3_label"
+                  },
+                  "text": "Roles"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onDoubleClick": {
+                      "config": {
+                        "script": "\t# If interactable property is False, skip. Else, navigate to addEditUser view to edit selected user.\n\tif self.props.interactable \u003d\u003d False or self.props.items[0].label \u003d\u003d \"No Users\":\n\t\tpass\n\telse:\n\t\tself.view.params.selectedUser \u003d self.props.items[int(self.props.selection[0])].label\n\t\tsystem.perspective.sendMessage(\"UserManagement_ChangeView\", payload\u003d{\"view\":\"addEditUser\"}, scope\u003d\"page\")"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Roles Tree"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.items": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.value.username"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t\n\tuser \u003d system.user.getUser(\"default\", value)\n\t\n\tlistTree \u003d []\n\t\n\tRoles \u003d user.getRoles()\n\t\n\tif len(Roles) \u003d\u003d 0: \n\t\tlistTree \u003d [{\u0027label\u0027:\u0027No Role\u0027, \u0027expanded\u0027:False, \u0027data\u0027:\u0027\u0027, \u0027items\u0027:[]}]\n\t\treturn listTree\n\t\t\n\tfor role in Roles:\n\t\tlistTree.append({\u0027label\u0027:role, \u0027expanded\u0027:False, \u0027data\u0027:\u0027\u0027, \u0027items\u0027:[]})\n\n\t\n\treturn listTree",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "appearance": {
+                    "defaultNodeIcons": {
+                      "collapsed": {
+                        "color": "--color-label-2",
+                        "path": "material/portrait"
+                      },
+                      "empty": {
+                        "color": "--color-label-2",
+                        "path": "material/portrait"
+                      },
+                      "expanded": {
+                        "color": "--color-label-2",
+                        "path": "material/portrait"
+                      }
+                    },
+                    "expandIcons": {
+                      "collapsed": {
+                        "color": "--color-label-2",
+                        "path": "material/arrow_right"
+                      },
+                      "empty": {
+                        "color": "--color-label-2"
+                      },
+                      "expanded": {
+                        "color": "--color-label-2",
+                        "path": "material/arrow_drop_down"
+                      }
+                    },
+                    "selectedStyle": {
+                      "cursor": "pointer",
+                      "fontSize": 15,
+                      "fontWeight": 300
+                    },
+                    "unselectedStyle": {
+                      "cursor": "pointer",
+                      "fontSize": 15,
+                      "fontWeight": 100
+                    }
+                  },
+                  "selection": [
+                    "3"
+                  ],
+                  "selectionData": [
+                    {
+                      "itemPath": "3",
+                      "value": ""
+                    }
+                  ],
+                  "style": {
+                    "classes": "form-label",
+                    "margin-left": "-15px",
+                    "zIndex": 1
+                  }
+                },
+                "type": "ia.display.tree"
+              }
+            ],
+            "meta": {
+              "name": "Roles"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "title"
+                },
+                "position": {
+                  "basis": "20px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "form-input3_label",
+                    "font-size": 15,
+                    "margin-bottom": "5px"
+                  },
+                  "text": "Contacts"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onDoubleClick": {
+                      "config": {
+                        "script": "\t# If interactable property is False, skip. Else, navigate to addEditUser view to edit selected user.\n\tif self.props.interactable \u003d\u003d False or self.props.items[0].label \u003d\u003d \"No Users\":\n\t\tpass\n\telse:\n\t\tself.view.params.selectedUser \u003d self.props.items[int(self.props.selection[0])].label\n\t\tsystem.perspective.sendMessage(\"UserManagement_ChangeView\", payload\u003d{\"view\":\"addEditUser\"}, scope\u003d\"page\")"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Contact Tree"
+                },
+                "position": {
+                  "grow": 2
+                },
+                "propConfig": {
+                  "props.items": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.value.username"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t\n\tuser \u003d system.user.getUser(\"default\", value)\n\tlistTree \u003d []\n\tcontacts \u003d user.getContactInfo()\n\t\n\tif len(contacts) \u003d\u003d 0:\n\t\tlistTree \u003d [{\u0027label\u0027:\u0027No Contact\u0027, \u0027expanded\u0027:False, \u0027data\u0027:\u0027\u0027, \u0027items\u0027:[]}]\n\t\treturn listTree\n\t\t\n\tfor contact in contacts:\n\t\tif str(contact).split(\":\")[0] \u003d\u003d \u0027sms\u0027:\n\t\t\tlistTree.append({\u0027label\u0027: str(contact).split(\":\")[1],\n\t\t\t\t\t\t\t \u0027expanded\u0027:False,\n\t\t\t\t\t\t\t \u0027data\u0027:\u0027\u0027,\n\t\t\t\t\t\t\t \u0027items\u0027:[],\n\t\t\t\t\t\t\t \u0027icon\u0027: {\n\t\t\t\t\t\t\t\t\t  \"path\": \"material/sms\",\n\t\t\t\t\t\t\t\t\t  \"color\": \"#869DB1\",\n\t\t\t\t\t\t\t\t\t  \"style\": {}\n\t\t\t\t\t\t\t}})\t\t\n\t\telif str(contact).split(\":\")[0] \u003d\u003d \u0027email\u0027:\n\t\t\tlistTree.append({\u0027label\u0027: str(contact).split(\":\")[1],\n\t\t\t\t\t\t\t \u0027expanded\u0027:False,\n\t\t\t\t\t\t\t \u0027data\u0027:\u0027\u0027,\n\t\t\t\t\t\t\t \u0027items\u0027:[],\n\t\t\t\t\t\t\t \u0027icon\u0027: {\n\t\t\t\t\t\t\t\t\t  \"path\": \"material/email\",\n\t\t\t\t\t\t\t\t\t  \"color\": \"#869DB1\",\n\t\t\t\t\t\t\t\t\t  \"style\": {}\n\t\t\t\t\t\t\t}})\t\n\t\telif str(contact).split(\":\")[0] \u003d\u003d \u0027phone\u0027:\n\t\t\tlistTree.append({\u0027label\u0027: str(contact).split(\":\")[1],\n\t\t\t\t\t\t\t \u0027expanded\u0027:False,\n\t\t\t\t\t\t\t \u0027data\u0027:\u0027\u0027,\n\t\t\t\t\t\t\t \u0027items\u0027:[],\n\t\t\t\t\t\t\t \u0027icon\u0027: {\n\t\t\t\t\t\t\t\t\t  \"path\": \"material/ring_volume\",\n\t\t\t\t\t\t\t\t\t  \"color\": \"#869DB1\",\n\t\t\t\t\t\t\t\t\t  \"style\": {}\n\t\t\t\t\t\t\t}})\t\n\n\treturn listTree",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "appearance": {
+                    "defaultNodeIcons": {
+                      "collapsed": {
+                        "color": "--color-label-2",
+                        "path": "material/portrait"
+                      },
+                      "empty": {
+                        "color": "--color-label-2",
+                        "path": "material/portrait"
+                      },
+                      "expanded": {
+                        "color": "--color-label-2",
+                        "path": "material/portrait"
+                      }
+                    },
+                    "expandIcons": {
+                      "collapsed": {
+                        "color": "--color-label-2",
+                        "path": "material/arrow_right"
+                      },
+                      "empty": {
+                        "color": "--color-label-2"
+                      },
+                      "expanded": {
+                        "color": "--color-label-2",
+                        "path": "material/arrow_drop_down"
+                      }
+                    },
+                    "selectedStyle": {
+                      "cursor": "pointer",
+                      "fontSize": 15,
+                      "fontWeight": 300
+                    },
+                    "unselectedStyle": {
+                      "cursor": "pointer",
+                      "fontSize": 15,
+                      "fontWeight": "100"
+                    }
+                  },
+                  "selection": [
+                    "0"
+                  ],
+                  "selectionData": [
+                    {
+                      "itemPath": "0",
+                      "value": ""
+                    }
+                  ],
+                  "style": {
+                    "classes": "form-label",
+                    "font-size": 24,
+                    "margin-left": "-15px",
+                    "textIndent": 0
+                  }
+                },
+                "type": "ia.display.tree"
+              }
+            ],
+            "meta": {
+              "name": "Contacts"
+            },
+            "position": {
+              "basis": "200px",
+              "grow": 2
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Trees Flex"
+        },
+        "position": {
+          "grow": 1
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "custom.roleName": {
+        "binding": {
+          "config": {
+            "path": "./Name FlexContainer/Name TextField.props.text"
+          },
+          "type": "property"
+        }
+      }
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "backgroundColor1": "--color-bk-3",
+        "min-width": "320px",
+        "padding": "6px 5px 0 0"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "pages": {
+    "/": {
+      "title": "",
+      "viewPath": "Pages/Main"
+    }
+  },
+  "sharedDocks": {
+    "cornerPriority": "top-bottom",
+    "left": [
+      {
+        "anchor": "fixed",
+        "autoBreakpoint": 100,
+        "content": "push",
+        "handle": "hide",
+        "iconUrl": "",
+        "id": "menu",
+        "modal": false,
+        "resizable": false,
+        "show": "auto",
+        "size": 254,
+        "viewParams": {},
+        "viewPath": "Docks/Menu"
+      }
+    ],
+    "top": [
+      {
+        "anchor": "fixed",
+        "autoBreakpoint": 480,
+        "content": "push",
+        "handle": "hide",
+        "iconUrl": "",
+        "id": "",
+        "modal": false,
+        "resizable": false,
+        "show": "visible",
+        "size": 64,
+        "viewParams": {},
+        "viewPath": "Docks/Header/Status"
+      }
+    ]
+  }
+}

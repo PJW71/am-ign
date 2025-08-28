@@ -1,0 +1,1126 @@
+{
+  "custom": {
+    "expand": false,
+    "filter": "%%"
+  },
+  "params": {},
+  "propConfig": {
+    "custom.expand": {
+      "binding": {
+        "config": {
+          "expression": "if(len({view.custom.filter}) \u003e 2, True, False)"
+        },
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "custom.filter": {
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 951,
+      "width": 260
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "page": "/"
+                  },
+                  "preventDefault": true,
+                  "scope": "C",
+                  "stopPropagation": true,
+                  "type": "nav"
+                }
+              }
+            },
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "30px"
+            },
+            "props": {
+              "path": "materialicons/icons-action-home"
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "105px"
+            },
+            "props": {
+              "style": {
+                "marginLeft": 5
+              },
+              "text": "Home"
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Home"
+        },
+        "position": {
+          "basis": "50px",
+          "display": false,
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "NV/menu",
+            "paddingBottom": 8,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 8
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "custom": {
+          "future": [
+            {
+              "items": [],
+              "label": {
+                "icon": {
+                  "color": "--color-menu-icon",
+                  "path": "material/dashboard"
+                },
+                "text": "Dashboard"
+              },
+              "navIcon": {},
+              "showHeader": false,
+              "target": "/dashboard"
+            },
+            {
+              "enabled": true,
+              "items": [],
+              "label": {
+                "icon": {
+                  "color": "--color-menu-icon",
+                  "path": "material/school"
+                },
+                "text": "Tutorials"
+              },
+              "showHeader": true,
+              "style": {
+                "classes": ""
+              },
+              "target": "/tutorials",
+              "visible": true
+            }
+          ]
+        },
+        "events": {
+          "component": {
+            "onItemClicked": {
+              "config": {
+                "script": "\tif event.label \u003d\u003d \"Message Panel\":\n\t\tsystem.perspective.openDock(\"messagePanel\")\n\t\tsystem.tag.write(\"[PID]Messages/users/\" + self.session.props.auth.user.userName, False)\n\t\t\n\telif event.label \u003d\u003d \"Change Password\":\n\t\tsystem.perspective.openPopup(\"changePassword\", \u0027Lib/App/Security/Password Change\u0027, title \u003d \"Change Your Password\")"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "domId": "nader",
+          "name": "MenuTree"
+        },
+        "position": {
+          "basis": 560,
+          "grow": 1
+        },
+        "props": {
+          "itemStyle": {
+            "border": "none",
+            "classes": "NV/menu"
+          },
+          "items": [
+            {
+              "enabled": true,
+              "items": [],
+              "label": {
+                "icon": {
+                  "color": "",
+                  "path": "materialicons/icons-action-home"
+                },
+                "text": "Home"
+              },
+              "navIcon": {
+                "color": "",
+                "path": ""
+              },
+              "showHeader": true,
+              "style": {
+                "classes": ""
+              },
+              "target": "/",
+              "visible": true
+            },
+            {
+              "enabled": true,
+              "items": [
+                {
+                  "enabled": true,
+                  "items": [
+                    {
+                      "enabled": true,
+                      "items": [
+                        {
+                          "backActionText": "",
+                          "enabled": true,
+                          "items": [],
+                          "label": {
+                            "icon": {
+                              "path": "MES/process 1"
+                            },
+                            "text": "MBF01 - NCM Feeding Unit"
+                          },
+                          "navIcon": {
+                            "path": ""
+                          },
+                          "resetOnClick": false,
+                          "showHeader": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "target": "/MBF01",
+                          "visible": true
+                        },
+                        {
+                          "backActionText": "",
+                          "enabled": true,
+                          "items": [],
+                          "label": {
+                            "icon": {
+                              "path": "MES/process 1"
+                            },
+                            "text": "MBU01 - Bag Unloading"
+                          },
+                          "navIcon": {
+                            "path": ""
+                          },
+                          "resetOnClick": false,
+                          "showHeader": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "target": "",
+                          "visible": true
+                        }
+                      ],
+                      "label": {
+                        "icon": {
+                          "path": "MES/process3"
+                        },
+                        "text": "MB - Material Handling NCM"
+                      },
+                      "navIcon": {
+                        "color": "#000000",
+                        "path": "material/keyboard_arrow_right"
+                      },
+                      "resetOnClick": false,
+                      "showHeader": true,
+                      "style": {
+                        "classes": ""
+                      },
+                      "target": "",
+                      "visible": true
+                    },
+                    {
+                      "enabled": true,
+                      "items": [
+                        {
+                          "backActionText": "",
+                          "enabled": true,
+                          "items": [],
+                          "label": {
+                            "icon": {
+                              "color": "--color-menu-icon",
+                              "path": "MES/process 1"
+                            },
+                            "text": "LEB01 - NCM Feedstock LU"
+                          },
+                          "navIcon": {
+                            "path": ""
+                          },
+                          "resetOnClick": false,
+                          "showHeader": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "target": "",
+                          "visible": true
+                        },
+                        {
+                          "backActionText": "",
+                          "enabled": true,
+                          "items": [],
+                          "label": {
+                            "icon": {
+                              "color": "--color-menu-icon",
+                              "path": "MES/process 1"
+                            },
+                            "text": "LEC01 - NMC Hyroxide LU"
+                          },
+                          "navIcon": {
+                            "path": ""
+                          },
+                          "resetOnClick": false,
+                          "showHeader": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "target": "",
+                          "visible": true
+                        },
+                        {
+                          "backActionText": "",
+                          "enabled": true,
+                          "items": [],
+                          "label": {
+                            "icon": {
+                              "color": "--color-menu-icon",
+                              "path": "MES/process 1"
+                            },
+                            "text": "LED01 - Graphite D\u0026P"
+                          },
+                          "navIcon": {
+                            "path": ""
+                          },
+                          "resetOnClick": false,
+                          "showHeader": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "target": "",
+                          "visible": true
+                        }
+                      ],
+                      "label": {
+                        "icon": {
+                          "path": "MES/process3"
+                        },
+                        "text": "LE - Leaching Process"
+                      },
+                      "navIcon": {
+                        "color": "--color-menu-icon",
+                        "path": "material/keyboard_arrow_right"
+                      },
+                      "resetOnClick": false,
+                      "showHeader": true,
+                      "style": {
+                        "classes": ""
+                      },
+                      "target": "",
+                      "visible": true
+                    },
+                    {
+                      "enabled": true,
+                      "items": [
+                        {
+                          "backActionText": "",
+                          "enabled": true,
+                          "items": [],
+                          "label": {
+                            "icon": {
+                              "path": "MES/process 2"
+                            },
+                            "text": "IRC01 - CU SX Unit"
+                          },
+                          "navIcon": {
+                            "path": ""
+                          },
+                          "resetOnClick": false,
+                          "showHeader": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "target": "",
+                          "visible": true
+                        },
+                        {
+                          "backActionText": "",
+                          "enabled": true,
+                          "items": [],
+                          "label": {
+                            "icon": {
+                              "path": "MES/process 2"
+                            },
+                            "text": "IRP01 - Precipitation Unit"
+                          },
+                          "navIcon": {
+                            "path": ""
+                          },
+                          "resetOnClick": false,
+                          "showHeader": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "target": "",
+                          "visible": true
+                        },
+                        {
+                          "backActionText": "",
+                          "enabled": true,
+                          "items": [],
+                          "label": {
+                            "icon": {
+                              "path": "MES/process 2"
+                            },
+                            "text": "IRX01 - Impurity Ion Exchnage"
+                          },
+                          "navIcon": {
+                            "path": ""
+                          },
+                          "resetOnClick": false,
+                          "showHeader": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "target": "",
+                          "visible": true
+                        },
+                        {
+                          "backActionText": "",
+                          "enabled": true,
+                          "items": [],
+                          "label": {
+                            "icon": {
+                              "path": "MES/process 2"
+                            },
+                            "text": "IRM01 - Cu Cementation"
+                          },
+                          "navIcon": {
+                            "path": ""
+                          },
+                          "resetOnClick": false,
+                          "showHeader": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "target": "",
+                          "visible": true
+                        }
+                      ],
+                      "label": {
+                        "icon": {
+                          "path": "MES/process3"
+                        },
+                        "text": "IR - Impurity Removal"
+                      },
+                      "navIcon": {
+                        "color": "#000000",
+                        "path": "material/keyboard_arrow_right"
+                      },
+                      "resetOnClick": false,
+                      "showHeader": true,
+                      "style": {
+                        "classes": ""
+                      },
+                      "target": "",
+                      "visible": true
+                    },
+                    {
+                      "enabled": true,
+                      "items": [
+                        {
+                          "backActionText": "",
+                          "enabled": true,
+                          "items": [],
+                          "label": {
+                            "icon": {
+                              "path": "MES/process 2"
+                            },
+                            "text": "ARC01 - Evaporation Crystallization"
+                          },
+                          "navIcon": {
+                            "path": ""
+                          },
+                          "resetOnClick": false,
+                          "showHeader": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "target": "",
+                          "visible": true
+                        },
+                        {
+                          "backActionText": "",
+                          "enabled": true,
+                          "items": [],
+                          "label": {
+                            "icon": {
+                              "path": "MES/process 2"
+                            },
+                            "text": "ARP01 - NMC Precipitation"
+                          },
+                          "navIcon": {
+                            "path": ""
+                          },
+                          "resetOnClick": false,
+                          "showHeader": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "target": "",
+                          "visible": true
+                        },
+                        {
+                          "backActionText": "",
+                          "enabled": true,
+                          "items": [],
+                          "label": {
+                            "icon": {
+                              "path": "MES/process 2"
+                            },
+                            "text": "ARD01 - NMC Dissolution"
+                          },
+                          "navIcon": {
+                            "path": ""
+                          },
+                          "resetOnClick": false,
+                          "showHeader": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "target": "",
+                          "visible": true
+                        },
+                        {
+                          "backActionText": "",
+                          "enabled": true,
+                          "items": [],
+                          "label": {
+                            "icon": {
+                              "path": "MES/process 2"
+                            },
+                            "text": "ARJ01 - NMC Concentration"
+                          },
+                          "navIcon": {
+                            "path": ""
+                          },
+                          "resetOnClick": false,
+                          "showHeader": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "target": "",
+                          "visible": true
+                        }
+                      ],
+                      "label": {
+                        "icon": {
+                          "path": "MES/process3"
+                        },
+                        "text": "AR- NCM Recovery"
+                      },
+                      "navIcon": {
+                        "color": "#000000",
+                        "path": "material/keyboard_arrow_right"
+                      },
+                      "resetOnClick": false,
+                      "showHeader": true,
+                      "style": {
+                        "classes": ""
+                      },
+                      "target": "",
+                      "visible": true
+                    },
+                    {
+                      "enabled": true,
+                      "items": [
+                        {
+                          "backActionText": "",
+                          "enabled": true,
+                          "items": [],
+                          "label": {
+                            "icon": {
+                              "path": "MES/process 2"
+                            },
+                            "text": "LRP01 - Mg \u0026 Ca Preciptation"
+                          },
+                          "navIcon": {
+                            "path": ""
+                          },
+                          "resetOnClick": false,
+                          "showHeader": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "target": "",
+                          "visible": true
+                        },
+                        {
+                          "backActionText": "",
+                          "enabled": true,
+                          "items": [],
+                          "label": {
+                            "icon": {
+                              "path": "MES/process 2"
+                            },
+                            "text": "LRI01 - Mg \u0026 Ca Ion Exchange"
+                          },
+                          "navIcon": {
+                            "path": ""
+                          },
+                          "resetOnClick": false,
+                          "showHeader": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "target": "",
+                          "visible": true
+                        },
+                        {
+                          "backActionText": "",
+                          "enabled": true,
+                          "items": [],
+                          "label": {
+                            "icon": {
+                              "path": "MES/process 2"
+                            },
+                            "text": "LRS01 - Sodium Sulphate"
+                          },
+                          "navIcon": {
+                            "path": ""
+                          },
+                          "resetOnClick": false,
+                          "showHeader": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "target": "",
+                          "visible": true
+                        },
+                        {
+                          "backActionText": "",
+                          "enabled": true,
+                          "items": [],
+                          "label": {
+                            "icon": {
+                              "path": "MES/process 2"
+                            },
+                            "text": "LRL01 - LiOH Crystallization"
+                          },
+                          "navIcon": {
+                            "path": ""
+                          },
+                          "resetOnClick": false,
+                          "showHeader": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "target": "",
+                          "visible": true
+                        },
+                        {
+                          "backActionText": "",
+                          "enabled": true,
+                          "items": [],
+                          "label": {
+                            "icon": {
+                              "path": "MES/process 2"
+                            },
+                            "text": "LRB01 - Drying \u0026 Packing"
+                          },
+                          "navIcon": {
+                            "path": ""
+                          },
+                          "resetOnClick": false,
+                          "showHeader": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "target": "",
+                          "visible": true
+                        },
+                        {
+                          "backActionText": "",
+                          "enabled": true,
+                          "items": [],
+                          "label": {
+                            "icon": {
+                              "path": "MES/process 2"
+                            },
+                            "text": "LRE01 - Effluent Treatment"
+                          },
+                          "navIcon": {
+                            "path": ""
+                          },
+                          "resetOnClick": false,
+                          "showHeader": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "target": "",
+                          "visible": true
+                        },
+                        {
+                          "backActionText": "",
+                          "enabled": true,
+                          "items": [],
+                          "label": {
+                            "icon": {
+                              "path": "MES/process 2"
+                            },
+                            "text": "LRE02 - Effluent Treatment"
+                          },
+                          "navIcon": {
+                            "path": ""
+                          },
+                          "resetOnClick": false,
+                          "showHeader": true,
+                          "style": {
+                            "classes": ""
+                          },
+                          "target": "",
+                          "visible": true
+                        }
+                      ],
+                      "label": {
+                        "icon": {
+                          "path": "MES/process3"
+                        },
+                        "text": "LR - Li Recovery"
+                      },
+                      "navIcon": {
+                        "color": "#000000",
+                        "path": "material/keyboard_arrow_right"
+                      },
+                      "resetOnClick": false,
+                      "showHeader": true,
+                      "style": {
+                        "classes": ""
+                      },
+                      "target": "",
+                      "visible": true
+                    },
+                    {
+                      "backActionText": "",
+                      "enabled": true,
+                      "items": [],
+                      "label": {
+                        "icon": {
+                          "path": "sp1/repair"
+                        },
+                        "text": "Power and Utilites "
+                      },
+                      "navIcon": {
+                        "path": ""
+                      },
+                      "resetOnClick": false,
+                      "showHeader": true,
+                      "style": {
+                        "classes": ""
+                      },
+                      "target": "",
+                      "visible": true
+                    }
+                  ],
+                  "label": {
+                    "icon": {
+                      "color": "--color-menu-icon",
+                      "path": "OEE_dark/building-factory-green-filled"
+                    },
+                    "text": "H1 - Hydromet"
+                  },
+                  "navIcon": {
+                    "color": "#000000",
+                    "path": "material/keyboard_arrow_right"
+                  },
+                  "showHeader": true,
+                  "style": {
+                    "classes": ""
+                  },
+                  "target": "",
+                  "visible": true
+                }
+              ],
+              "label": {
+                "icon": {
+                  "color": "--color-menu-icon",
+                  "path": "map/gas-plant"
+                },
+                "text": "Ett"
+              },
+              "navIcon": {
+                "color": "#000000",
+                "path": "material/keyboard_arrow_right"
+              },
+              "showHeader": true,
+              "style": {
+                "classes": ""
+              },
+              "target": "",
+              "visible": true
+            },
+            {
+              "enabled": true,
+              "items": [
+                {
+                  "enabled": true,
+                  "items": [],
+                  "label": {
+                    "icon": {
+                      "path": "MES/pareto"
+                    },
+                    "text": "Pareto Chart"
+                  },
+                  "navIcon": {
+                    "path": ""
+                  },
+                  "resetOnClick": false,
+                  "showHeader": true,
+                  "style": {
+                    "classes": ""
+                  },
+                  "target": "",
+                  "visible": true
+                },
+                {
+                  "enabled": true,
+                  "items": [],
+                  "label": {
+                    "icon": {
+                      "path": "MES/down-time"
+                    },
+                    "text": "Down Times"
+                  },
+                  "navIcon": {
+                    "path": ""
+                  },
+                  "resetOnClick": false,
+                  "showHeader": true,
+                  "style": {
+                    "classes": ""
+                  },
+                  "target": "",
+                  "visible": true
+                },
+                {
+                  "enabled": true,
+                  "items": [],
+                  "label": {
+                    "icon": {
+                      "path": "sp1/sankey"
+                    },
+                    "text": "Oil Distribution"
+                  },
+                  "navIcon": {
+                    "path": ""
+                  },
+                  "resetOnClick": false,
+                  "showHeader": true,
+                  "style": {
+                    "classes": ""
+                  },
+                  "target": "",
+                  "visible": true
+                }
+              ],
+              "label": {
+                "icon": {
+                  "color": "--color-menu-icon",
+                  "path": "sp1/reports"
+                },
+                "text": "Reports"
+              },
+              "navIcon": {
+                "color": "#000000",
+                "path": "material/keyboard_arrow_right"
+              },
+              "showHeader": true,
+              "style": {
+                "classes": ""
+              },
+              "target": "",
+              "visible": true
+            },
+            {
+              "items": [
+                {
+                  "enabled": true,
+                  "items": [],
+                  "label": {
+                    "icon": {
+                      "color": "--color-menu-icon",
+                      "path": "material/notifications_none"
+                    },
+                    "text": "Live Alarms"
+                  },
+                  "navIcon": {
+                    "path": ""
+                  },
+                  "showHeader": true,
+                  "style": {
+                    "classes": ""
+                  },
+                  "target": "/alarms",
+                  "visible": "trueco"
+                },
+                {
+                  "enabled": true,
+                  "items": [],
+                  "label": {
+                    "icon": {
+                      "color": "--color-menu-icon",
+                      "path": "material/timelapse"
+                    },
+                    "text": "History Alarms"
+                  },
+                  "navIcon": {
+                    "path": ""
+                  },
+                  "showHeader": true,
+                  "style": {
+                    "classes": ""
+                  },
+                  "target": "Lib/Alarm Analysis/Alarm Analysis",
+                  "visible": true
+                },
+                {
+                  "enabled": true,
+                  "items": [],
+                  "label": {
+                    "icon": {
+                      "color": "--color-menu-icon",
+                      "path": "material/equalizer"
+                    },
+                    "text": "Alarm Statical"
+                  },
+                  "navIcon": {
+                    "path": ""
+                  },
+                  "showHeader": true,
+                  "style": {
+                    "classes": ""
+                  },
+                  "target": "/alarm-analysis",
+                  "visible": true
+                }
+              ],
+              "label": {
+                "icon": {
+                  "color": "--color-menu-icon",
+                  "path": "material/notifications_active",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "text": "Alarms"
+              },
+              "navIcon": {
+                "color": "#000000",
+                "path": "material/keyboard_arrow_right"
+              },
+              "showHeader": true,
+              "target": "/alarms"
+            },
+            {
+              "items": [
+                {
+                  "items": [],
+                  "label": {
+                    "icon": {
+                      "color": "--color-menu-icon",
+                      "path": "sp1/audit"
+                    },
+                    "text": "Audit List"
+                  },
+                  "navIcon": {
+                    "color": "#FFFFFF",
+                    "path": ""
+                  },
+                  "showHeader": false,
+                  "target": "/audit"
+                },
+                {
+                  "enabled": true,
+                  "items": [],
+                  "label": {
+                    "icon": {
+                      "color": "--color-menu-icon",
+                      "path": "material/people"
+                    },
+                    "text": "Users Manegment"
+                  },
+                  "navIcon": {
+                    "path": ""
+                  },
+                  "showHeader": true,
+                  "style": {
+                    "classes": ""
+                  },
+                  "target": "/users",
+                  "visible": true
+                },
+                {
+                  "items": [],
+                  "label": {
+                    "icon": {
+                      "color": "--color-menu-icon",
+                      "path": "sp1/change_password"
+                    },
+                    "text": "Change Password"
+                  },
+                  "navIcon": {},
+                  "showHeader": true,
+                  "target": ""
+                },
+                {
+                  "items": [],
+                  "label": {
+                    "icon": {
+                      "color": "--color-menu-icon",
+                      "path": "material/date_range"
+                    },
+                    "text": "Schedule Management"
+                  },
+                  "navIcon": {},
+                  "showHeader": true,
+                  "target": "/schedule"
+                },
+                {
+                  "items": [],
+                  "label": {
+                    "icon": {
+                      "color": "--color-menu-icon",
+                      "path": "material/perm_contact_calendar"
+                    },
+                    "text": "Roster Maangement"
+                  },
+                  "navIcon": {},
+                  "showHeader": true,
+                  "target": "/roster"
+                }
+              ],
+              "label": {
+                "icon": {
+                  "color": "--color-menu-icon",
+                  "path": "material/security"
+                },
+                "text": "Security"
+              },
+              "navIcon": {
+                "color": "#000000",
+                "path": "material/keyboard_arrow_right"
+              },
+              "showHeader": true,
+              "target": "/Security"
+            },
+            {
+              "items": [],
+              "label": {
+                "icon": {
+                  "color": "--color-menu-icon",
+                  "path": "sp1/dashboard"
+                },
+                "text": "Server Performance"
+              },
+              "navIcon": {
+                "color": "#817E7E",
+                "path": ""
+              },
+              "showHeader": false,
+              "target": "/server-info"
+            },
+            {
+              "items": [],
+              "label": {
+                "icon": {
+                  "color": "--color-menu-icon",
+                  "path": "sp1/trends"
+                },
+                "text": "Charts"
+              },
+              "navIcon": {},
+              "showHeader": true,
+              "target": "/charts"
+            }
+          ],
+          "style": {
+            "backgroundColor": "--color-bk-0",
+            "paddingBottom": 8,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 8
+          }
+        },
+        "type": "ia.navigation.menutree"
+      },
+      {
+        "meta": {
+          "name": "nv_logotype-tagline-pos"
+        },
+        "position": {
+          "basis": "100px"
+        },
+        "propConfig": {
+          "props.source": {
+            "binding": {
+              "config": {
+                "expression": "{session.props.theme}"
+              },
+              "transforms": [
+                {
+                  "fallback": null,
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": "light",
+                      "output": "/system/images/nv_logotype-tagline-pos.svg"
+                    },
+                    {
+                      "input": "dark",
+                      "output": "/system/images/nv_logotype-tagline-neg.svg"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "fit": {
+            "mode": "contain"
+          },
+          "style": {
+            "marginLeft": 5,
+            "marginRight": 5
+          }
+        },
+        "type": "ia.display.image"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "backgroundColor": "--color-bk-0",
+        "borderRightColor": "--color-bk-0",
+        "borderRightStyle": "SOLID",
+        "borderRightWidth": 2,
+        "user-select": "NONE"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,0 +1,258 @@
+{
+  "custom": {
+    "FBSName": "F1.C1.SM1.SBC01.HWA1-LT1",
+    "format": "#,##0.##",
+    "unit": "L"
+  },
+  "params": {
+    "icon": "P\u0026ID/AI",
+    "label": "LT1",
+    "showTrend": false,
+    "tagPath": "[nv]F1/C1/SM1/SBC01/HWA1/LT1"
+  },
+  "propConfig": {
+    "custom.FBSName": {
+      "binding": {
+        "config": {
+          "expression": "tag({view.params.tagPath}+\"/FBSName\")"
+        },
+        "transforms": [
+          {
+            "code": "\t\n\treturn (value.rsplit(\u0027.\u0027, 1)[0] + \u0027-\u0027 + value.rsplit(\u0027.\u0027, 1)[1])",
+            "type": "script"
+          }
+        ],
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "custom.format": {
+      "binding": {
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "tagPath": "{view.params.tagPath}"
+          },
+          "tagPath": "{tagPath}/Sts/Value.FormatString"
+        },
+        "type": "tag"
+      },
+      "persistent": true
+    },
+    "custom.unit": {
+      "binding": {
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "tagPath": "{view.params.tagPath}"
+          },
+          "tagPath": "{tagPath}/Sts/Value.EngUnit"
+        },
+        "type": "tag"
+      },
+      "persistent": true
+    },
+    "params.icon": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.label": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.showTrend": {
+      "binding": {
+        "config": {
+          "expression": "False"
+        },
+        "type": "expr"
+      },
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 26,
+      "width": 164
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Icon_1"
+        },
+        "position": {
+          "basis": "25px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.path": {
+            "binding": {
+              "config": {
+                "path": "view.params.icon"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "margin-right": 5
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "name": "L1"
+        },
+        "position": {
+          "basis": "25px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.label"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "marginRight": "4PX"
+          },
+          "textStyle": {
+            "classes": "pid-tag",
+            "textAlign": "left"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\t\tPID.OpenPopup(self, event, \"Lib/NV/P\u0026ID/NV/AI/popup\", 795, 241, self.view.params.tagPath, self.view.custom.FBSName, \"bottomDock\", \"Lib/NV/P\u0026ID/NV/AI/dock\")"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "V1"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "numberFormat(tag({view.params.tagPath}+\"/Sts/Value\"), {view.custom.format})+ \" \" + {view.custom.unit}"
+              },
+              "overlayOptOut": true,
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "pid-number2 ",
+            "cursor": "pointer",
+            "fontWeight": "normal"
+          },
+          "textStyle": {
+            "textAlign": "start"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "id": "dockChart",
+                "type": "open",
+                "viewParams": {
+                  "popup": "false",
+                  "tagPath": "{view.params.tagPath}/Sts/Value"
+                }
+              },
+              "scope": "C",
+              "type": "dock"
+            }
+          }
+        },
+        "meta": {
+          "name": "Trend Icon",
+          "tooltip": {
+            "enabled": true,
+            "location": "bottom",
+            "tail": false,
+            "text": "Show In trend"
+          }
+        },
+        "position": {
+          "basis": "24px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.color": {
+            "binding": {
+              "config": {
+                "path": "view.params.showTrend"
+              },
+              "enabled": false,
+              "transforms": [
+                {
+                  "fallback": "",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": true,
+                      "output": "orange"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "path": "sp1/trends",
+          "style": {
+            "classes": "menu-hover",
+            "cursor": "pointer"
+          }
+        },
+        "type": "ia.display.icon"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

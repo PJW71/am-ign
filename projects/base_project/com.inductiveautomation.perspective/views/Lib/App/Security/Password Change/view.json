@@ -1,0 +1,193 @@
+{
+  "custom": {},
+  "params": {},
+  "propConfig": {
+    "params.feature": {
+      "paramDirection": "input"
+    },
+    "params.key": {
+      "paramDirection": "input"
+    },
+    "params.tier1": {
+      "paramDirection": "input"
+    },
+    "params.tier2": {
+      "paramDirection": "input"
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 344,
+      "width": 293
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Profile Picture"
+        },
+        "position": {
+          "basis": "64px",
+          "shrink": 0
+        },
+        "props": {
+          "params": {
+            "login": false
+          },
+          "path": "Lib/App/Security/Profile Picture"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "User Name Add Label_3"
+        },
+        "position": {
+          "basis": "18px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "form-input3_label",
+            "margin-top": 15
+          },
+          "text": "Old Password"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "oldPassword"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "props": {
+          "placeholder": "Type old password",
+          "style": {
+            "classes": "form-input3"
+          }
+        },
+        "type": "ia.input.password-field"
+      },
+      {
+        "meta": {
+          "name": "User Name Add Label_14"
+        },
+        "position": {
+          "basis": "18px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "form-input3_label",
+            "margin-top": 15
+          },
+          "text": "New Password"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "newPassword1"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "props": {
+          "placeholder": "Type new password",
+          "style": {
+            "classes": "form-input3",
+            "fontFamily": "D-DIN"
+          }
+        },
+        "type": "ia.input.password-field"
+      },
+      {
+        "meta": {
+          "name": "User Name Add Label_15"
+        },
+        "position": {
+          "basis": "18px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "form-input3_label",
+            "margin-top": 15
+          },
+          "text": "New Password (Repeat)"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "newPassword2"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "props": {
+          "placeholder": "Repeat new password",
+          "style": {
+            "classes": "form-input3"
+          }
+        },
+        "type": "ia.input.password-field"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tusername \u003d self.session.props.auth.user.userName\n\toldPassword \u003d self.getSibling(\"oldPassword\").props.text\n\tnewPassword1 \u003d self.getSibling(\"newPassword1\").props.text\n\tnewPassword2 \u003d self.getSibling(\"newPassword2\").props.text\n\t\n\t\n\tif oldPassword \u003d\u003d oldPassword and oldPassword !\u003d \u0027\u0027:\n\t\t\n\t\tif newPassword1 \u003d\u003d newPassword2 and newPassword1 !\u003d \u0027\u0027:\n\t\t\tuserToChange \u003d system.user.getUser(\"default\", username)\n\t\t\tuserToChange.set(\"password\", newPassword1)\n\t\t\tsystem.user.editUser(\"default\", userToChange)\n\t\t\tsystem.perspective.openDock(\u0027dockMessage\u0027, params \u003d {\u0027Message\u0027:\u0027Password successfully changed!\u0027,\u0027Icon\u0027:\u0027nader/thumb_up\u0027})\n\t\t\tsystem.perspective.closePopup(\u0027changePassword\u0027)\t\n\t\t\t\n\t\telse:\n\t\t\t# password not match\n\t\t\tif newPassword1 \u003d\u003d \u0027\u0027 or newPassword2 \u003d\u003d \u0027\u0027:\n\t\t\t\tsystem.perspective.openDock(\u0027dockMessage\u0027, params \u003d {\u0027Message\u0027:\u0027New Password can not be empty!\u0027,\u0027Icon\u0027:\u0027material/error\u0027})\n\t\t\telse:\n\t\t\t\tsystem.perspective.openDock(\u0027dockMessage\u0027, params \u003d {\u0027Message\u0027:\u0027Password fileds do not match! Please try again \u0027,\u0027Icon\u0027:\u0027material/error\u0027})\n\telse:\n\t\t# Wrong old Password\n\t\tsystem.perspective.openDock(\u0027dockMessage\u0027, params \u003d {\u0027Message\u0027:\u0027Wrong old password! Please enter your old password.\u0027,\u0027Icon\u0027:\u0027material/error\u0027})\n\t\n\t# reset all field\n\tself.getSibling(\"oldPassword\").props.text \u003d \u0027\u0027\n\tself.getSibling(\"newPassword1\").props.text \u003d \u0027\u0027\n\tself.getSibling(\"newPassword2\").props.text \u003d \u0027\u0027\n\t"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button_1"
+        },
+        "position": {
+          "basis": 38,
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.enabled": {
+            "binding": {
+              "config": {
+                "expression": "if({session.props.auth.user.userName}\u003d Null,false,true)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "border": "none",
+            "margin": "20px 0 0 0"
+          },
+          "text": "CHANGE PASSWORD"
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "overflow": "hidden",
+        "padding": "10px 20px 20px 20px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

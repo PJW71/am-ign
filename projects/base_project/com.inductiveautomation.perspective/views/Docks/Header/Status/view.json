@@ -1,0 +1,71 @@
+{
+  "custom": {},
+  "params": {
+    "breakpointLarge": 768,
+    "breakpointMedium": 500,
+    "params": {},
+    "path": "Docks/Header"
+  },
+  "propConfig": {
+    "params.breakpointLarge": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.breakpointMedium": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.params": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.path": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 34,
+      "width": 818
+    },
+    "loading": {
+      "mode": "blocking"
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Desktop"
+        },
+        "position": {
+          "size": "large"
+        },
+        "props": {
+          "path": "Docks/Header/Desktop"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Mobile"
+        },
+        "props": {
+          "path": "Docks/Header/Mobile"
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "breakpoint": 750,
+      "style": {
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.breakpt"
+  }
+}

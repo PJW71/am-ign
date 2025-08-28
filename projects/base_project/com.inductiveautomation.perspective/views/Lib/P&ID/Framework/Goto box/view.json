@@ -1,0 +1,67 @@
+{
+  "custom": {},
+  "params": {
+    "subView": "Pages/Sites/NOVO/Eddy Co/Astrodog/02 234H",
+    "view": "Pages/Sites/NOVO/Eddy Co/Astrodog/00 Main"
+  },
+  "propConfig": {
+    "params.subView": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.view": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tsystem.perspective.navigate(view \u003d self.view.params.view, params \u003d {\"view\": self.view.params.subView})"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Icon",
+          "tooltip": {
+            "enabled": true,
+            "location": "center-left",
+            "tail": false,
+            "text": "Open Related P\u0026ID page"
+          }
+        },
+        "position": {
+          "height": 24,
+          "width": 24,
+          "x": "auto",
+          "y": 5
+        },
+        "props": {
+          "path": "material/open_in_new",
+          "style": {
+            "classes": "pid-icon",
+            "right": 5
+          }
+        },
+        "type": "ia.display.icon"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "border": "dashed 1px var(--color-tr-4)"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

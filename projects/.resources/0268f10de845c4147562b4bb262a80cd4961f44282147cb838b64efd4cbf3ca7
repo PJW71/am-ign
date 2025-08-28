@@ -1,0 +1,1 @@
+{"onStartup":"\tPID.Init(session)\n\tGateway.initAlarms()\n\t","onShutdown":"\t\tsession.custom.openPopups = []\n\t","onBarcodeDataReceived":"\t","onBluetoothReceived":"\t","onAccelerometerDataReceived":"\t","onNdefDataReceived":"\t"}

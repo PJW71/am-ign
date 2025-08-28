@@ -1,0 +1,854 @@
+{
+  "custom": {},
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\tself.session.custom.mobileScreen \u003d False"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 40,
+      "width": 897
+    },
+    "loading": {
+      "mode": "blocking"
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "id": "menu",
+                "type": "toggle"
+              },
+              "scope": "C",
+              "type": "dock"
+            }
+          }
+        },
+        "meta": {
+          "name": "Menu Dock"
+        },
+        "position": {
+          "basis": "24px",
+          "shrink": 0
+        },
+        "props": {
+          "color": "white",
+          "path": "material/format_align_justify",
+          "style": {
+            "classes": "form-icon-button",
+            "marginLeft": 10
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "custom": {
+          "cnt": 2
+        },
+        "meta": {
+          "name": "IFrame",
+          "visible": false
+        },
+        "position": {
+          "basis": "4px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "custom.alarmLoop": {
+            "binding": {
+              "config": {
+                "expression": "now(1600)"
+              },
+              "transforms": [
+                {
+                  "code": "\tself.custom.cnt +\u003d 1\n\tif self.custom.cnt \u003e\u003d 3:\n\t\tself.custom.cnt \u003d 0\n\t\tself.custom.alarmLoop \u003d True\n\telse:\n\t\tself.custom.alarmLoop \u003d False\n\t\t\n\treturn self.custom.alarmLoop",
+                  "type": "script"
+                }
+              ],
+              "type": "expr"
+            }
+          },
+          "props.src": {
+            "binding": {
+              "config": {
+                "expression": "if({ALARM/Priority/Sound File} !\u003d \u0027\u0027 \u0026\u0026 {this.custom.alarmLoop},\r\n{session.props.gateway.address} + {ALARM/Priority/Sound File},\r\n\"\")"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "allowFullScreen": true,
+          "referrerPolicy": "origin"
+        },
+        "type": "ia.display.iframe"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tsystem.tag.write(\"[PID]Messages/users/\" + self.session.props.auth.user.userName, False)\n\tsystem.perspective.openDock(\"messagePanel\")"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "newMessage"
+        },
+        "position": {
+          "basis": "24px",
+          "display": false,
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "if({session.props.auth.user.userName} !\u003d Null, // if we have a login user check if he has new \r\nif(tag(\"[PID]Messages/users/\"+{session.props.auth.user.userName}), True, False),False)"
+              },
+              "enabled": false,
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "color": "--color-hover",
+          "path": "material/email",
+          "style": {
+            "classes": "Header/Alarm_Active",
+            "cursor": "pointer",
+            "margin-right": 8
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "name": "platfrom icon",
+          "tooltip": {
+            "delay": 1000,
+            "text": "Current Location"
+          }
+        },
+        "position": {
+          "basis": "24px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "if({session.custom.myLocation.name} !\u003d None, True, False)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.path": {
+            "binding": {
+              "config": {
+                "path": "session.custom.activePage.icon"
+              },
+              "overlayOptOut": true,
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "form-icon-button",
+            "margin-right": 2
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "hasDelegate": true,
+          "name": "loation"
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "if({session.custom.myLocation.name} !\u003d None , {session.custom.myLocation.name}, \"\")"
+              },
+              "overlayOptOut": true,
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "PID-label",
+            "color": "#FFFFFF",
+            "fontFamily": "roboto",
+            "fontSize": 14,
+            "fontWeight": "400",
+            "margin-left": 0,
+            "paddingTop": "3px"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "page": "/alarms"
+              },
+              "scope": "C",
+              "type": "nav"
+            }
+          }
+        },
+        "meta": {
+          "hasDelegate": true,
+          "name": "Alarms",
+          "tooltip": {
+            "delay": 1000,
+            "enabled": true,
+            "location": "bottom",
+            "tail": false,
+            "text": "Unack Alarms"
+          }
+        },
+        "position": {
+          "display": false,
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "//if({session.custom.myLocation} !\u003d None, tag(\"ALARM/\" + {session.custom.myLocation.name}) + \"/\" + \r\n//({ALARM/Total}),{ALARM/Total})\r\n{ALARM/Total}"
+              },
+              "overlayOptOut": true,
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "backgroundColor": "white",
+            "border-radius": 5,
+            "color": "#FF766B",
+            "cursor": "pointer",
+            "fontFamily": "D-DIN",
+            "fontSize": "14px",
+            "fontWeight": 400,
+            "height": "24px",
+            "marginLeft": "6px",
+            "min-width": "24px",
+            "padding": "0 6px"
+          },
+          "textStyle": {
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tif system.tag.read(\u0027ALARM/Priority/Sound File\u0027).value \u003d\u003d \u0027\u0027:\n\t\tsystem.perspective.navigate(\u0027/alarms\u0027)\n\telse:\n\t\tsystem.tag.write(\"ALARM/Priority/Sound File\", \u0027\u0027)\n\t\tUtil.audit(action \u003d \u0027Alarm Sound Mute\u0027, \n\t\t\t\t\tactionTarget \u003d \u0027Alarming System\u0027,\n\t\t\t\t\tactionValue \u003d \u0027Mute\u0027,\n\t\t\t\t\tsession \u003d self.session)\n\t"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Alarm Icon",
+          "tooltip": {
+            "delay": 1000,
+            "enabled": true,
+            "location": "bottom",
+            "tail": false,
+            "text": "Mute Siren Alarm"
+          }
+        },
+        "position": {
+          "basis": "22px",
+          "display": false,
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.color": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "direct",
+                "tagPath": "[PID]ALARM/Total"
+              },
+              "transforms": [
+                {
+                  "expression": "if({value} \u003e 0, \"#FF766B\", \"\")",
+                  "type": "expression"
+                }
+              ],
+              "type": "tag"
+            }
+          },
+          "props.path": {
+            "binding": {
+              "config": {
+                "expression": "if({ALARM/Priority/Sound File} !\u003d \u0027\u0027,\"material/volume_up\", \"material/notifications_active\")"
+              },
+              "overlayOptOut": true,
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "form-icon-button",
+            "cursor": "pointer",
+            "margin-right": "5px",
+            "marginLeft": "5px",
+            "paddingTop": "2px"
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "name": "filler_0"
+        },
+        "position": {
+          "basis": "5px",
+          "grow": 1
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\t\n\tUIID \u003d system.tag.read(\"ALARM/LastUnAckUIID\").value\n\ttagPath \u003d system.tag.read(\"ALARM/LastUnAckTagPath\").value \n\t\n\t#---------------------------------------------------------\n\t# Ack Alarm\n\t#---------------------------------------------------------\t\n\tif self.session.custom.writeAccess:\n\t\tuser \u003d self.session.props.auth.user.userName\n\t\tsystem.alarm.acknowledge([UIID], None, user)\n\t\tUtil.audit(action \u003d \u0027Alarms ACK\u0027, actionTarget \u003d tagPath, actionValue \u003d \u0027ACK\u0027, session \u003d self.session)\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "ACK",
+              "tooltip": {
+                "enabled": true,
+                "location": "bottom",
+                "tail": false,
+                "text": "Ack This Alarm"
+              }
+            },
+            "position": {
+              "basis": "24px",
+              "shrink": 0
+            },
+            "props": {
+              "color": "#FF766B",
+              "path": "material/thumb_up_alt",
+              "style": {
+                "classes": "form-icon-button"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tSearchEngine.openAlarmHMI(self.session)\n\t\n#\ttagPath \u003d system.tag.read(\"ALARM/LastUnAckTagPath\").value\n#\t\n#\t# Every UDT or tag have .HMI custom member\n#\t# For normal tag\n#\tview \u003d system.tag.read(tagPath + \".HMI\").value\n#\t\n#\t# UDT we have trim the member away\n#\tif view \u003d\u003d None: # so it is UDT. \n#\t\t# Get rid of member first\n#\t\ttagPath \u003d tagPath[:tagPath.rfind(\"/\")]\n#\t\tview \u003d system.tag.read(tagPath + \".HMI\").value\n#\t\n#\tsystem.perspective.navigate(view \u003d  view)\n#\t#----------------------------------------------------\n#\t# Show Related object in HMI\n#\t#----------------------------------------------------\n#\tprov \u003d self.session.custom.provider\n#\tself.session.custom.whereAre.you \u003d \"[\" + prov + \"]\" + tagPath\n#\n#\t#----------------------------------------------------\n#\t# Show Related object in HMI\n#\t#----------------------------------------------------\n#\tprov \u003d self.session.custom.provider\n#\tself.session.custom.whereAre.you \u003d \u0027[\u0027 + prov + \u0027]\u0027 + tagPath\t\t\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "hasDelegate": true,
+              "name": "Last Alarm",
+              "tooltip": {
+                "delay": 1000,
+                "enabled": true,
+                "location": "bottom",
+                "tail": false,
+                "text": "Open Parent HMI"
+              }
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "expression": "{[PID]ALARM/Total} !\u003d 0"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "fallbackDelay": 2.5,
+                    "mode": "direct",
+                    "tagPath": "ALARM/LastUnack"
+                  },
+                  "overlayOptOut": true,
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "color": "#FF766B",
+                "cursor": "pointer",
+                "fontFamily": "D-DIN",
+                "fontSize": "14px",
+                "fontWeight": "400",
+                "height": "24px",
+                "min-width": "24px"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Alarm"
+        },
+        "position": {
+          "display": false,
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "{ALARM/Total} !\u003d 0"
+              },
+              "enabled": false,
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "alignItems": "center",
+          "justify": "center",
+          "style": {
+            "backgroundColor": "#C0C0C03B",
+            "border-radius": 5,
+            "height": "24px",
+            "min-width": "24px",
+            "padding": "0 16px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "filler"
+        },
+        "position": {
+          "basis": "5px",
+          "grow": 1
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tsystem.perspective.navigateBack()\n\tlens \u003d len(self.session.custom.openViews)\n\t\n\tif lens \u003e 2:\n\t\tview \u003d self.session.custom.openViews.pop()\n\t\tview \u003d self.session.custom.openViews.pop() \n\telif lens \u003d\u003d 2:\n\t\tview \u003d self.session.custom.openViews.pop() \n\t\tview \u003d self.session.custom.openViews[0]\n\telse:\n\t\tview \u003d self.session.custom.openViews.pop(0)\t\n\tsystem.perspective.navigate(view \u003d view[\"view\"] , params \u003d {\"view\": view[\"subView\"]})\n"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "fullscreen_1",
+          "tooltip": {
+            "enabled": true,
+            "location": "bottom",
+            "tail": false,
+            "text": "Previous Page"
+          }
+        },
+        "position": {
+          "basis": "24px",
+          "display": false,
+          "shrink": 0
+        },
+        "propConfig": {
+          "custom.viewLogger": {
+            "binding": {
+              "config": {
+                "path": "page.props.primaryView"
+              },
+              "transforms": [
+                {
+                  "code": "\titem \u003d {\"view\": value, \"subView\": \"\"}\n\t\n\tfor i in self.session.custom[\u0027openViews\u0027]:\n\t\tif i[\"view\"] \u003d\u003d item[\"view\"]:\n\t\t\tif i[\"subView\"] \u003d\u003d item[\"subView\"]:\n\t\t\t\treturn value\n\t\n\tself.session.custom[\u0027openViews\u0027].append({\"view\": value, \"subView\": \"\"})\n\treturn value",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "len({session.custom.openViews}) !\u003d 0"
+              },
+              "enabled": false,
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "color": "white",
+          "path": "material/arrow_back",
+          "style": {
+            "classes": "form-icon-button"
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tif self.session.props.theme \u003d\u003d \u0027dark\u0027:\n\t\tself.session.props.theme \u003d \u0027light\u0027\n\telse:\n\t\tself.session.props.theme \u003d \u0027dark\u0027\t"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "theme",
+          "tooltip": {
+            "delay": 1000,
+            "enabled": true,
+            "location": "bottom-right",
+            "tail": false,
+            "text": "Change Theme"
+          }
+        },
+        "position": {
+          "basis": "24px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.elements[0].style.visibility": {
+            "binding": {
+              "config": {
+                "path": "session.props.theme"
+              },
+              "transforms": [
+                {
+                  "fallback": "hidden",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": "light",
+                      "output": "visible"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.elements[1].style.visibility": {
+            "binding": {
+              "config": {
+                "path": "session.props.theme"
+              },
+              "transforms": [
+                {
+                  "fallback": "hidden",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": "dark",
+                      "output": "visible"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "elements": [
+            {
+              "d": "M 2.3363461,2.0000053 A 0.33486268,0.33486268 0 0 0 2.0004086,2.3339893 V 21.757817 a 0.33486268,0.33486268 0 0 0 0,0.04883 0.33486268,0.33486268 0 0 0 0,0.04687 v 0.02734 l 0.027344,0.04297 0.033203,0.03711 0.037109,0.0332 0.042969,0.02734 h 0.027344 l 0.1015624,0.07031 h 0.066406 19.421875 a 0.33486268,0.33486268 0 0 0 0.333985,-0.333985 V 2.3339893 a 0.51903715,0.51903715 0 0 0 -0.01953,-0.095703 v -0.027343 l -0.02734,-0.042969 -0.0332,-0.03711 -0.03711,-0.033203 -0.04297,-0.027344 h -0.02734 A 0.33486268,0.33486268 0 0 0 21.758221,2.0000053 Z M 21.424237,3.1425833 V 21.42188 H 3.1429867 Z M 8.037518,4.0097713 a 0.33486275,0.33486275 0 0 1 0.3261718,0.333984 v 1.003906 A 0.33486268,0.33486268 0 0 1 8.0277524,5.6835993 0.33486268,0.33486268 0 0 1 7.693768,5.3476613 v -1.003906 a 0.33486275,0.33486275 0 0 1 0.34375,-0.333984 z m 2.582032,1.09375 a 0.33486268,0.33486268 0 0 1 0.248047,0.552734 l -0.708985,0.697266 A 0.33486268,0.33486268 0 0 1 9.9222836,6.4668023 0.33486268,0.33486268 0 0 1 9.6859555,5.8945363 L 10.39494,5.1835993 a 0.33486268,0.33486268 0 0 1 0.22461,-0.080078 z m -5.1660164,0.00391 a 0.33486268,0.33486268 0 0 1 0.00195,0 0.33486268,0.33486268 0 0 1 0.2011719,0.080078 l 0.7109375,0.710938 a 0.33486268,0.33486268 0 0 1 -0.2382813,0.572265 l 0.00391,-0.00391 A 0.33486268,0.33486268 0 0 1 5.8949398,6.3691463 L 5.1840024,5.6601613 a 0.33486268,0.33486268 0 0 1 0.2695312,-0.552734 z m 2.5566406,1.246094 a 1.6743134,1.6743134 0 0 1 0.017578,0 1.6743134,1.6743134 0 0 1 1.6738281,1.673828 1.6743134,1.6743134 0 0 1 -1.6738281,1.673828 1.6743134,1.6743134 0 0 1 -1.6738282,-1.673828 1.6743134,1.6743134 0 0 1 1.6562502,-1.673828 z m -3.6953125,1.339843 a 0.33486275,0.33486275 0 0 1 0.029297,0 h 1.0039062 a 0.334961,0.334961 0 0 1 0,0.669922 H 4.3441586 a 0.33528122,0.33528122 0 0 1 -0.029297,-0.669922 z m 6.3632813,0 a 0.33486275,0.33486275 0 0 1 0.0293,0 h 1.003907 a 0.334961,0.334961 0 0 1 0,0.669922 h -1.003907 a 0.33528122,0.33528122 0 0 1 -0.0293,-0.669922 z M 6.1215024,9.6210993 A 0.33486268,0.33486268 0 0 1 6.3695492,10.173833 L 5.6605648,10.884771 A 0.33486268,0.33486268 0 0 1 5.4222836,10.966802 0.33486268,0.33486268 0 0 1 5.1840024,10.394536 L 5.8988461,9.7011773 a 0.33486268,0.33486268 0 0 1 0.2226563,-0.080078 z m 3.8496093,0.019531 a 0.33486268,0.33486268 0 0 1 0.1875003,0.060547 l 0.708985,0.7109367 a 0.33486268,0.33486268 0 0 1 -0.238282,0.572266 l 0.0039,-0.01758 A 0.33486268,0.33486268 0 0 1 10.394934,10.8711 L 9.6859555,10.160161 A 0.33486268,0.33486268 0 0 1 9.9711117,9.6406303 Z M 8.037518,10.373052 a 0.33486275,0.33486275 0 0 1 0.3261718,0.333984 v 1.003907 A 0.33486268,0.33486268 0 0 1 8.0277524,12.044927 0.33486268,0.33486268 0 0 1 7.693768,11.710943 v -1.003907 a 0.33486275,0.33486275 0 0 1 0.34375,-0.333984 z m 7.740235,1.460937 a 0.33486268,0.33486268 0 0 0 -0.04883,0.0078 4.0183522,4.0183522 0 1 0 4.203125,6.3125 l -0.02734,0.0098 a 0.33486268,0.33486268 0 0 0 -0.333985,-0.52539 3.3486268,3.3486268 0 0 1 -3.505859,-5.257813 0.33486268,0.33486268 0 0 0 -0.287109,-0.546875 z",
+              "fill": {
+                "paint": "white"
+              },
+              "name": "light",
+              "style": {},
+              "type": "path"
+            },
+            {
+              "d": "M 2.3335392,2.0000036 A 0.33486268,0.33486268 0 0 0 1.9995548,2.333988 v 19.423828 a 0.51903715,0.51903715 0 0 0 0.019531,0.0957 v 0.02734 l 0.027344,0.04297 0.033203,0.03711 0.037109,0.0332 0.042969,0.02734 h 0.027344 a 0.33486268,0.33486268 0 0 0 0.1464844,0.07031 H 21.757366 a 0.33486268,0.33486268 0 0 0 0.0957,-0.01367 0.33486268,0.33486268 0 0 0 0.238281,-0.320313 V 2.333988 a 0.33486268,0.33486268 0 0 0 0,-0.046875 0.33486268,0.33486268 0 0 0 0,-0.00195 0.33486268,0.33486268 0 0 0 0,-0.046875 V 2.210944 l -0.02734,-0.042969 -0.0332,-0.037109 -0.03711,-0.033203 -0.04297,-0.027344 h -0.02734 l -0.09961,-0.070315 h -0.06641 z M 2.6694767,2.6699255 H 20.948773 L 2.6694767,20.949223 Z m 5.3671875,1.3398437 a 0.3348627,0.3348627 0 0 0 -0.34375,0.3339844 V 5.3476598 A 0.33486268,0.33486268 0 0 0 8.0268986,5.6835974 0.33486268,0.33486268 0 0 0 8.362836,5.3476598 V 4.3437536 A 0.3348627,0.3348627 0 0 0 8.0366642,4.0097692 Z m 2.5820308,1.09375 a 0.33486268,0.33486268 0 0 0 -0.22461,0.080078 L 9.6851017,5.8945348 A 0.33486268,0.33486268 0 0 0 9.9214298,6.4668005 0.33486268,0.33486268 0 0 0 10.157757,6.3535192 L 10.866742,5.6562536 A 0.33486268,0.33486268 0 0 0 10.618695,5.1035192 Z m -5.1640621,0.00391 A 0.33486268,0.33486268 0 0 0 5.1831486,5.6601598 L 5.894086,6.3691442 a 0.33486268,0.33486268 0 0 0 0.2382813,0.097656 l -0.00391,0.00391 A 0.33486268,0.33486268 0 0 0 6.3667423,5.8984411 L 5.6558048,5.1875036 A 0.33486268,0.33486268 0 0 0 5.4546329,5.1074255 Z m 2.5546875,1.2460937 a 1.6743134,1.6743134 0 0 0 -1.65625,1.6738282 1.6743134,1.6743134 0 0 0 1.6738282,1.6738281 1.6743134,1.6743134 0 0 0 1.6738281,-1.6738281 1.6743134,1.6743134 0 0 0 -1.6738281,-1.6738282 1.6743134,1.6743134 0 0 0 -0.017578,0 z M 4.3140079,7.693363 a 0.33528105,0.33528105 0 0 0 0.029297,0.6699218 h 1.0039062 a 0.3349609,0.3349609 0 0 0 0,-0.6699218 H 4.3433048 a 0.3348627,0.3348627 0 0 0 -0.029297,0 z m 6.3613271,0 a 0.33532513,0.33532513 0 0 0 0.03125,0.6699218 h 1.003907 a 0.3349609,0.3349609 0 0 0 0,-0.6699218 h -1.003907 a 0.3348627,0.3348627 0 0 0 -0.03125,0 z M 6.1206486,9.6210974 A 0.33486268,0.33486268 0 0 0 5.8979923,9.7011755 L 5.1831486,10.394535 a 0.33486268,0.33486268 0 0 0 0.2382812,0.572266 0.33486268,0.33486268 0 0 0 0.2382812,-0.08203 L 6.3686954,10.173832 A 0.33486268,0.33486268 0 0 0 6.1206486,9.6210974 Z m 3.8496093,0.019531 A 0.33486268,0.33486268 0 0 0 9.6851017,10.16016 l 0.7089833,0.710938 a 0.33486268,0.33486268 0 0 0 0.238281,0.0957 l -0.0039,0.01758 a 0.33486268,0.33486268 0 0 0 0.238282,-0.572266 L 10.157757,9.7011755 A 0.33486268,0.33486268 0 0 0 9.9702579,9.6406284 Z M 8.0366642,10.371098 a 0.3348627,0.3348627 0 0 0 -0.34375,0.335937 v 1.003907 A 0.33486268,0.33486268 0 0 0 8.0268986,12.044926 0.33486268,0.33486268 0 0 0 8.362836,11.710942 V 10.707035 A 0.3348627,0.3348627 0 0 0 8.0366642,10.371098 Z m 7.7402338,1.46289 a 0.33486268,0.33486268 0 0 1 0.287109,0.546875 3.3486268,3.3486268 0 0 0 -0.322265,0.523438 3.3486268,3.3486268 0 0 0 -0.06641,0.138672 3.3486268,3.3486268 0 0 0 1.548828,4.33789 3.3486268,3.3486268 0 0 0 0.138672,0.06641 3.3486268,3.3486268 0 0 0 2.207031,0.191406 0.33486268,0.33486268 0 0 1 0.333985,0.52539 l 0.02734,-0.0098 a 4.0183522,4.0183522 0 1 1 -4.203125,-6.3125 0.33486268,0.33486268 0 0 1 0.04883,-0.0078 z",
+              "fill": {
+                "paint": "var(--color-label-0)"
+              },
+              "name": "dark",
+              "style": {},
+              "type": "path"
+            }
+          ],
+          "style": {
+            "classes": "form-icon-button",
+            "margin-right": 5
+          },
+          "viewBox": "0 0 24 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "id": "clients",
+                "type": "toggle"
+              },
+              "scope": "C",
+              "type": "dock"
+            }
+          }
+        },
+        "meta": {
+          "name": "fullscreen_0",
+          "tooltip": {
+            "enabled": true,
+            "location": "bottom-right",
+            "tail": false,
+            "text": "Show Active Users"
+          }
+        },
+        "position": {
+          "basis": "26px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "session.props.auth.user.roles[0]"
+              },
+              "transforms": [
+                {
+                  "fallback": false,
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": "Administrator",
+                      "output": true
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "color": "white",
+          "path": "material/supervised_user_circle",
+          "style": {
+            "classes": "form-icon-button"
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "id": "SearchEngine",
+                "type": "toggle"
+              },
+              "scope": "C",
+              "type": "dock"
+            }
+          }
+        },
+        "meta": {
+          "name": "tag Search",
+          "tooltip": {
+            "delay": 1000,
+            "enabled": true,
+            "location": "bottom-right",
+            "tail": false,
+            "text": "Search Enigine"
+          }
+        },
+        "position": {
+          "basis": "24px",
+          "display": false,
+          "shrink": 0
+        },
+        "props": {
+          "elements": [
+            {
+              "d": "m 12.693585,3.3148957 c -0.495785,0 -0.94637,0.1989127 -1.270882,0.5234279 L 3.3116625,11.951458 c -0.3245144,0.324515 -0.5338965,0.783471 -0.5338965,1.279257 0,0.495786 0.2003678,0.946369 0.5338965,1.270884 l 6.3083541,6.310448 c 0.3245154,0.333528 0.7750964,0.531802 1.2708834,0.531802 0.495786,0 0.946368,-0.198914 1.270883,-0.523428 l 0.703487,-0.703487 c -0.09812,-0.03196 -0.200922,-0.0463 -0.297307,-0.08375 -4.8352892,-1.842811 -4.8352892,-8.682284 0,-10.5250898 0.64113,-0.2491177 1.322137,-0.3782618 2.009964,-0.3768683 2.657241,-0.00462 4.657295,1.7298241 5.366183,3.9068671 l 0.330806,-0.330807 c 0.33353,-0.333528 0.531804,-0.783473 0.531804,-1.279258 V 5.1175816 c 0,-0.9915723 -0.811114,-1.8026859 -1.802687,-1.8026859 z m 4.95791,1.8026859 c 0.748186,0 1.352538,0.6043513 1.352538,1.3525379 0,0.7481856 -0.604352,1.3525379 -1.352538,1.3525379 -0.748187,0 -1.350443,-0.6043523 -1.350443,-1.3525379 0,-0.7481866 0.602256,-1.3525379 1.350443,-1.3525379 z m -3.058912,4.8888164 c -0.582209,-0.0012 -1.159506,0.107381 -1.702189,0.318246 -4.0928163,1.559837 -4.0928163,7.348902 0,8.908743 0.542683,0.21087 1.11998,0.319423 1.702189,0.318244 1.04288,-2.9e-5 2.055395,-0.343253 2.883041,-0.977763 l 2.633889,2.631796 c 0.251149,0.251073 0.657522,0.251073 0.908671,0 0.251073,-0.251149 0.251073,-0.657522 0,-0.908671 l -2.631796,-2.633889 c 2.397799,-3.138058 0.155473,-7.6635759 -3.793805,-7.656706 z m 0.167497,1.270884 c 0.23269,0.01653 0.475032,0.05665 0.72233,0.121436 3.956781,1.036536 3.213028,6.873271 -0.889827,6.867375 -0.596164,-8.75e-4 -1.182165,-0.154435 -1.702189,-0.445961 -3.3551132,-1.881025 -1.620668,-6.790777 1.869686,-6.54285 z m 3.044256,8.213632 c -0.01876,0.01477 -0.03759,0.02943 -0.05653,0.04397 0.01693,-0.01727 0.04213,-0.02464 0.05653,-0.04397 z m 0.427118,0.707675 c -0.02225,0.01754 -0.04454,0.0351 -0.067,0.05234 0.02009,-0.02049 0.04992,-0.0294 0.067,-0.05234 z m 0.142372,0.138184 c -0.01701,0.02283 -0.04701,0.03195 -0.067,0.05234 0.02236,-0.01718 0.04484,-0.03489 0.067,-0.05234 z m 0.504585,0.835391 c -0.02017,0.02709 -0.05584,0.0386 -0.07956,0.06281 0.02653,-0.02038 0.05327,-0.0421 0.07956,-0.06281 z",
+              "name": "path883",
+              "style": {},
+              "type": "path"
+            }
+          ],
+          "style": {
+            "classes": "form-icon-button",
+            "fill": "white"
+          },
+          "viewBox": "0 0 24 24"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "custom": {
+          "fullscreenMode": false,
+          "showClients": false
+        },
+        "meta": {
+          "hasDelegate": true,
+          "name": "DateTime",
+          "tooltip": {
+            "enabled": true,
+            "location": "bottom",
+            "tail": false,
+            "text": "Server Local Time"
+          }
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "dateFormat({[System]Gateway/CurrentDateTime},\u0027yyyy/MM/dd HH:mm:ss\u0027)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "color": "white",
+            "fontFamily": "D-DIN-Condensed",
+            "fontSize": 18,
+            "fontWeight": "100",
+            "line-height": "14px",
+            "margin-right": 5,
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "action": "Toggle",
+                "type": "Page"
+              },
+              "scope": "C",
+              "type": "fullscreen"
+            }
+          }
+        },
+        "meta": {
+          "name": "fullscreen",
+          "tooltip": {
+            "enabled": true,
+            "location": "bottom-right",
+            "tail": false,
+            "text": "Toggle Fullscreen Mode"
+          }
+        },
+        "position": {
+          "basis": "24px",
+          "shrink": 0
+        },
+        "props": {
+          "color": "white",
+          "path": "material/zoom_out_map",
+          "style": {
+            "classes": "form-icon-button"
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "name": "Profile Picture Small"
+        },
+        "position": {
+          "basis": "150px"
+        },
+        "props": {
+          "params": {
+            "login": true
+          },
+          "path": "Lib/App/Security/Profile Picture Small"
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "meta": {
+      "name": "root",
+      "tooltip": {
+        "enabled": true
+      }
+    },
+    "props": {
+      "alignItems": "center",
+      "style": {
+        "backgroundColor": "#000000",
+        "overflow": "hidden",
+        "padding": "0 5px",
+        "user-select": "none"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

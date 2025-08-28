@@ -1,0 +1,163 @@
+{
+  "custom": {
+    "fbs": {}
+  },
+  "params": {},
+  "propConfig": {
+    "custom.fbs": {
+      "persistent": true
+    }
+  },
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "70px",
+              "shrink": 0
+            },
+            "props": {
+              "path": "material/supervised_user_circle"
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "grow": 1,
+              "shrink": 4
+            },
+            "props": {
+              "alignVertical": "bottom",
+              "text": "HMI User Managment",
+              "textStyle": {
+                "fontFamily": "Noto Sans",
+                "fontSize": "28px",
+                "fontWeight": "bold",
+                "whiteSpace": "pre-wrap"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Title"
+        },
+        "position": {
+          "basis": "68px"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "FBS"
+            },
+            "position": {
+              "basis": "250px"
+            },
+            "props": {
+              "params": {
+                "icon": "materialiconstwotone/icons-social-precision_manufacturing",
+                "label": "FBS",
+                "multiSelect": false,
+                "options": [
+                  {
+                    "label": "Per Hour",
+                    "value": 0
+                  },
+                  {
+                    "label": "Per Day",
+                    "value": 1
+                  },
+                  {
+                    "label": "Per Flow Period",
+                    "value": 2
+                  }
+                ],
+                "placeHolder": "Select...",
+                "value": null
+              },
+              "path": "Lib/P\u0026ID/Framework/Dropbox",
+              "style": {
+                "margin": "0 10px 10px 0"
+              }
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "User Name"
+            },
+            "position": {
+              "basis": "160px"
+            },
+            "props": {
+              "params": {
+                "icon": "material/supervisor_account",
+                "label": "User Name",
+                "multiSelect": false,
+                "options": [
+                  {
+                    "label": "Per Hour",
+                    "value": 0
+                  },
+                  {
+                    "label": "Per Day",
+                    "value": 1
+                  },
+                  {
+                    "label": "Per Flow Period",
+                    "value": 2
+                  }
+                ],
+                "placeHolder": "Select...",
+                "value": null
+              },
+              "path": "Lib/P\u0026ID/Framework/Dropbox",
+              "style": {
+                "margin": "0 10px 10px 0"
+              }
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "70px",
+              "shrink": 0
+            },
+            "props": {
+              "path": "materialiconssharp/icons-social-psychology"
+            },
+            "type": "ia.display.icon"
+          }
+        ],
+        "meta": {
+          "name": "Filters"
+        },
+        "position": {
+          "basis": "59px"
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

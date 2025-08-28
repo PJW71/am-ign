@@ -1,0 +1,7 @@
+{
+  "title": "BaseProject",
+  "description": "Use this as reference project ..export and import with new name \ndefine tag provider\ndefine",
+  "enabled": true,
+  "inheritable": false,
+  "parent": "Lib"
+}

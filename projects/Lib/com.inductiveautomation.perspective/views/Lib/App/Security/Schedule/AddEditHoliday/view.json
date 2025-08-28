@@ -1,0 +1,632 @@
+{
+  "custom": {
+    "editHoliday": [],
+    "error": true
+  },
+  "params": {
+    "mode": "add",
+    "selectedHoliday": ""
+  },
+  "propConfig": {
+    "custom.editHoliday": {
+      "binding": {
+        "config": {
+          "path": "view.params.selectedHoliday"
+        },
+        "transforms": [
+          {
+            "code": "\t# If mode is add, return an empty list. Else, get holiday object based on holiday name from the Gateway.\n\tif self.params.mode \u003d\u003d \"add\":\n\t\treturn []\n\telse:\n\t\tholiday \u003d system.user.getHoliday(value)\n\t\tif holiday !\u003d None:\n\t\t\tholidayDict \u003d {\n\t\t\t\t\u0027getType\u0027:\t\t\t\u0027holiday\u0027,\n\t\t\t\t\u0027getName\u0027:\t\t\tholiday.getName(),\n\t\t\t\t\u0027getDate\u0027:\t\t\tholiday.getDate(),\n\t\t\t\t\u0027isRepeatAnnually\u0027:\tholiday.isRepeatAnnually()\n\t\t\t\t}\n\t\t\t\t\n\t\t\treturn holidayDict\n\t\telse:\n\t\t\treturn []\n\n",
+            "type": "script"
+          }
+        ],
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "custom.error": {
+      "binding": {
+        "config": {
+          "expression": "if({/root/Name ObserveHolidays/Name/Name Container/Icon.custom.errorMessage}!\u003d\"\", True, False)"
+        },
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "params.mode": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.selectedHoliday": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 600,
+      "width": 750
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "title"
+            },
+            "position": {
+              "basis": "220px",
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "expression": "if ({view.params.mode} \u003d \"add\", \"Holidays \u003e Add Holiday\", \"Holidays \u003e Edit Holiday\")"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "font-family": "oswald",
+                "font-size": 18,
+                "fontWeight": "100",
+                "padding-left": 10
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\t# Navigate to Home view and clear selectedHoliday.\n\tsystem.perspective.sendMessage(messageType\u003d\u0027ScheduleManagement_ChangeViews\u0027, payload\u003d{\u0027view\u0027:\u0027home\u0027}, scope\u003d\"page\")\n\tself.view.params.selectedHoliday \u003d \"\""
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "back"
+            },
+            "position": {
+              "basis": "32px",
+              "shrink": 0
+            },
+            "props": {
+              "path": "material/navigate_before",
+              "style": {
+                "classes": "icon-button",
+                "margin-right": 5
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tfrom com.inductiveautomation.ignition.common.user.schedule import HolidayModel\n\t\n\t# If error messages exist on the view, open popup with error messages. Else, add/edit holiday object.\n\tif self.view.custom.error \u003d\u003d True:\n\t\tparams \u003d {\n\t\t\t\u0027name\u0027: self.parent.parent.getChild(\"Name ObserveHolidays\").getChild(\"Name\").getChild(\"Name Container\").getChild(\"Icon\").custom.errorMessage,\n\t\t\t\u0027mode\u0027:\t\u0027holiday\u0027\n\t\t}\n\t\tsystem.perspective.openPopup(id\u003d\u0027ScheduleManagement_SaveError\u0027, view\u003d\u0027Lib/App/Security/Schedule/Popups/SaveError\u0027, params\u003dparams, showCloseIcon\u003dFalse, draggable\u003dFalse)\n\telse:\n\t\n\t\t# Create holiday object using the imported HolidayModel.\n\t\tname \u003d self.view.getChild(\"root\").custom.name\n\t\tdate \u003d self.view.getChild(\"root\").custom.date\n\t\trepeatAnnually \u003d self.view.getChild(\"root\").custom.repeatAnnually\n\t\tholidayObject \u003d HolidayModel(name, date, repeatAnnually)\n\t\t\n\t\t# If editing, edit current Holiday with new holiday object. Else, add new holiday object.\n\t\tif self.view.params.mode \u003d\u003d \"edit\":\n\t\t\tsystem.user.editHoliday(self.view.custom.editHoliday.getName, holidayObject)\n\t\telse:\n\t\t\tsystem.user.addHoliday(holidayObject)\n\t\t\n\t\t# Navigate to Home view.\n\t\tsystem.perspective.sendMessage(\u0027ScheduleManagement_ChangeViews\u0027, payload \u003d {\u0027view\u0027:\u0027home\u0027}, scope\u003d\"page\")"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "save"
+            },
+            "position": {
+              "basis": "28px",
+              "shrink": 0
+            },
+            "props": {
+              "path": "material/save",
+              "style": {
+                "classes": "icon-button"
+              }
+            },
+            "type": "ia.display.icon"
+          }
+        ],
+        "meta": {
+          "name": "Header"
+        },
+        "position": {
+          "basis": "40px",
+          "shrink": 0
+        },
+        "props": {
+          "alignItems": "center",
+          "style": {
+            "background-color": "--color-bk-1",
+            "marginBottom": "10px",
+            "overflow": "hidden",
+            "padding": 5
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Name"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "title-modern",
+                    "font-size": 16,
+                    "margin": "0 0 5px 5px"
+                  },
+                  "text": "Name"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Name TextField"
+                    },
+                    "position": {
+                      "basis": "280px"
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "view.params.mode"
+                          },
+                          "transforms": [
+                            {
+                              "fallback": "{view.params.selectedHoliday}",
+                              "inputType": "scalar",
+                              "mappings": [
+                                {
+                                  "input": "add",
+                                  "output": "\"\""
+                                }
+                              ],
+                              "outputType": "expression",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "deferUpdates": false,
+                      "rejectUpdatesWhileFocused": false,
+                      "style": {
+                        "border-radius": 3,
+                        "borderStyle": "none",
+                        "box-shadow": "2px 2px 8px var(--color-bk-4)",
+                        "height": 32,
+                        "margin": "1px 10px"
+                      }
+                    },
+                    "type": "ia.input.text-field"
+                  },
+                  {
+                    "children": [
+                      {
+                        "meta": {
+                          "name": "Label"
+                        },
+                        "position": {
+                          "basis": "50px",
+                          "grow": 1
+                        },
+                        "propConfig": {
+                          "position.display": {
+                            "binding": {
+                              "config": {
+                                "path": "parent.custom.errorMessage"
+                              },
+                              "transforms": [
+                                {
+                                  "fallback": true,
+                                  "inputType": "scalar",
+                                  "mappings": [
+                                    {
+                                      "input": "",
+                                      "output": false
+                                    }
+                                  ],
+                                  "outputType": "scalar",
+                                  "type": "map"
+                                }
+                              ],
+                              "type": "property"
+                            }
+                          },
+                          "props.text": {
+                            "binding": {
+                              "config": {
+                                "path": "parent.custom.errorMessage"
+                              },
+                              "type": "property"
+                            }
+                          }
+                        },
+                        "props": {
+                          "style": {
+                            "backgroundColor": "#F6F6F6",
+                            "borderColor": "#BBBBBB",
+                            "borderStyle": "solid",
+                            "borderWidth": "1px",
+                            "fontSize": "12px",
+                            "marginLeft": "-37px",
+                            "marginRight": "2px",
+                            "marginTop": "28px",
+                            "padding": "4px",
+                            "position": "absolute",
+                            "visibility": "hidden",
+                            "width": "auto",
+                            "zIndex": 999999
+                          }
+                        },
+                        "type": "ia.display.label"
+                      },
+                      {
+                        "events": {
+                          "dom": {
+                            "onMouseOut": {
+                              "config": {
+                                "script": "\tself.getSibling(\"Label\").props.style.visibility \u003d \"hidden\""
+                              },
+                              "scope": "G",
+                              "type": "script"
+                            },
+                            "onMouseOver": {
+                              "config": {
+                                "script": "\tif self.view.custom.error \u003d\u003d True:\n\t\tself.getSibling(\"Label\").props.style.visibility \u003d \"visible\""
+                              },
+                              "scope": "G",
+                              "type": "script"
+                            }
+                          }
+                        },
+                        "meta": {
+                          "name": "Icon"
+                        },
+                        "position": {
+                          "basis": "23px",
+                          "shrink": 0
+                        },
+                        "propConfig": {
+                          "props.color": {
+                            "binding": {
+                              "config": {
+                                "path": "parent.custom.errorMessage"
+                              },
+                              "transforms": [
+                                {
+                                  "fallback": "#FF0000",
+                                  "inputType": "scalar",
+                                  "mappings": [
+                                    {
+                                      "input": "",
+                                      "output": "--color-green"
+                                    }
+                                  ],
+                                  "outputType": "scalar",
+                                  "type": "map"
+                                }
+                              ],
+                              "type": "property"
+                            }
+                          },
+                          "props.path": {
+                            "binding": {
+                              "config": {
+                                "path": "parent.custom.errorMessage"
+                              },
+                              "transforms": [
+                                {
+                                  "fallback": "material/error",
+                                  "inputType": "scalar",
+                                  "mappings": [
+                                    {
+                                      "input": "",
+                                      "output": "material/done_all"
+                                    }
+                                  ],
+                                  "outputType": "scalar",
+                                  "type": "map"
+                                }
+                              ],
+                              "type": "property"
+                            }
+                          }
+                        },
+                        "type": "ia.display.icon"
+                      }
+                    ],
+                    "meta": {
+                      "name": "Icon"
+                    },
+                    "position": {
+                      "basis": "23px",
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "custom.errorMessage": {
+                        "binding": {
+                          "config": {
+                            "path": "../Name TextField.props.text"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\t# Get holiday object from the Gateway.\n\tholiday \u003d system.user.getHoliday(value)\n\t\n\t# If a holiday object gets returned but doesn\u0027t match the current Holiday editing, return an error message.\n\tif holiday !\u003d None:\n\t\tif holiday.getName() \u003d\u003d self.view.params.selectedHoliday:\n\t\t\treturn \u0027\u0027\n\t\telse:\n\t\t\treturn \u0027Holiday name already exists.\u0027\n\t\t\t\n\t# Return error message if Holiday name text field is empty.\n\telif value \u003d\u003d \u0027\u0027 or value.isspace():\n\t\treturn \u0027Holiday name field cannot be empty.\u0027\n\telse:\n\t\treturn \u0027\u0027\n",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "overflow": "visible"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  }
+                ],
+                "meta": {
+                  "name": "Name Container"
+                },
+                "position": {
+                  "basis": "36px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "overflow": "visible"
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "Name"
+            },
+            "position": {
+              "basis": "320px"
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "height": 70,
+                "overflow": "visible"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Name ObserveHolidays"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "alignItems": "flex-start",
+          "style": {
+            "classes": "ScheduleManagement/SectionHeaders",
+            "marginBottom": "10px",
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Description"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "title-modern",
+            "font-size": 16,
+            "margin": "0 0 5px 5px"
+          },
+          "text": "Date"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "DateTimeInput"
+            },
+            "position": {
+              "basis": "210px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.mode"
+                  },
+                  "transforms": [
+                    {
+                      "fallback": "now(0)",
+                      "inputType": "scalar",
+                      "mappings": [
+                        {
+                          "input": "edit",
+                          "output": "toDate({view.custom.editHoliday.getDate}, \"MM/dd/yyyy\")"
+                        }
+                      ],
+                      "outputType": "expression",
+                      "type": "map"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "format": "MMM DD, YYYY",
+              "formattedValue": "Jun 06, 2021",
+              "formattedValues": {
+                "date": "Oct 22, 2020"
+              },
+              "inputProps": {
+                "style": {
+                  "border": "none",
+                  "border-radius": 3,
+                  "borderColor": "",
+                  "borderStyle": "none",
+                  "borderWidth": "0px",
+                  "box-shadow": "2px 2px 8px var(--color-bk-4)",
+                  "classes": "",
+                  "height": 30
+                }
+              },
+              "pickerType": "date",
+              "style": {
+                "classes": "ScheduleManagement/InputFont",
+                "height": "26px",
+                "marginBottom": "10px",
+                "marginLeft": "5px"
+              }
+            },
+            "type": "ia.input.date-time-input"
+          }
+        ],
+        "meta": {
+          "name": "Date"
+        },
+        "position": {
+          "basis": "28px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "ScheduleManagement/SectionHeaders",
+            "margin": "0 0 10px 5px",
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "RepeatAnnually CheckBox"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.selected": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.mode"
+                  },
+                  "transforms": [
+                    {
+                      "fallback": "False",
+                      "inputType": "scalar",
+                      "mappings": [
+                        {
+                          "input": "edit",
+                          "output": "{view.custom.editHoliday.isRepeatAnnually}"
+                        }
+                      ],
+                      "outputType": "expression",
+                      "type": "map"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "inputStyle": {
+                "marginLeft": "8px"
+              },
+              "style": {
+                "classes": "ScheduleManagement/InputFont"
+              },
+              "text": "Repeat Annually"
+            },
+            "type": "ia.input.checkbox"
+          }
+        ],
+        "meta": {
+          "name": "Repeat Annually"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "title-modern",
+            "fontSize": 16,
+            "textIndent": 0
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "custom.date": {
+        "binding": {
+          "config": {
+            "path": "./Date/DateTimeInput.props.value"
+          },
+          "type": "property"
+        }
+      },
+      "custom.name": {
+        "binding": {
+          "config": {
+            "path": "./Name ObserveHolidays/Name/Name Container/Name TextField.props.text"
+          },
+          "type": "property"
+        }
+      },
+      "custom.repeatAnnually": {
+        "binding": {
+          "config": {
+            "path": "./Repeat Annually/RepeatAnnually CheckBox.props.selected"
+          },
+          "type": "property"
+        }
+      }
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "backgroundColor": "--color-bk-3",
+        "min-width": "320px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

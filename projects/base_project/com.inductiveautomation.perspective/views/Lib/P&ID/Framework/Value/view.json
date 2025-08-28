@@ -1,0 +1,420 @@
+{
+  "custom": {},
+  "params": {
+    "hrs": 1,
+    "icon": "BMS/temp",
+    "label": "Hi Pressure",
+    "showTrend": true,
+    "tagPath": "[MD]Assets/Toshka/ZoneA/A02/P102/VFD/Motor Current"
+  },
+  "propConfig": {
+    "params.hrs": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.icon": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.label": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.showTrend": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 45,
+      "width": 79
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "grow": 1,
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.label"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "padding-left": 8
+              },
+              "textStyle": {
+                "classes": "pid-label",
+                "textAlign": "left"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Label_0"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.showTrend"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "expression": "\"-\" + toStr({view.params.hrs})+ \"h\""
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "padding": "0 8px"
+              },
+              "textStyle": {
+                "fontSize": 9,
+                "textAlign": "right"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_0"
+        },
+        "position": {
+          "height": 14.999999999999998,
+          "rotate": {
+            "anchor": "36% 50%"
+          },
+          "width": "100%",
+          "y": 2.99
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "20px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.path": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.icon"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "color": "--color-label-2"
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "draggable": true,
+                    "id": "{view.params.tagPath}",
+                    "modal": false,
+                    "overlayDismiss": false,
+                    "position": {
+                      "relativeLocation": "top-left"
+                    },
+                    "positionType": "relative",
+                    "resizable": true,
+                    "showCloseIcon": true,
+                    "type": "open",
+                    "viewParams": {
+                      "alias": "{view.params.label}",
+                      "tagPath": "{view.params.tagPath}"
+                    },
+                    "viewPath": "Lib/App/Chart",
+                    "viewportBound": true
+                  },
+                  "scope": "C",
+                  "type": "popup"
+                },
+                "onContextMenu": {
+                  "config": {
+                    "script": "\tClickToGraph.OpenMenu(self.view.params.tagPath , event.clientX, event.clientY)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Label_1"
+            },
+            "position": {
+              "grow": 1,
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "indirect",
+                    "references": {
+                      "tagPath": "{view.params.tagPath}"
+                    },
+                    "tagPath": "{tagPath}"
+                  },
+                  "overlayOptOut": true,
+                  "transforms": [
+                    {
+                      "formatType": "numeric",
+                      "formatValue": "##.#",
+                      "type": "format"
+                    },
+                    {
+                      "expression": "coalesce({value}, \"---\")",
+                      "type": "expression"
+                    }
+                  ],
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "pid-number2",
+                "cursor": "pointer",
+                "padding": "0 2px 1px 3px"
+              },
+              "textStyle": {
+                "textAlign": "left"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "unit"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "indirect",
+                    "references": {
+                      "tagPath": "{view.params.tagPath}"
+                    },
+                    "tagPath": "{tagPath}.engUnit"
+                  },
+                  "overlayOptOut": true,
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "padding": "0 8px 0 0",
+                "right": 0
+              },
+              "textStyle": {
+                "color": "--color-label-2",
+                "fontFamily": "sofia pro",
+                "fontSize": 12,
+                "fontWeight": "300"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "custom": {
+              "key": [
+                {
+                  "aggregate": "LastValue"
+                }
+              ]
+            },
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "draggable": true,
+                    "id": "{view.params.tagPath}",
+                    "modal": false,
+                    "overlayDismiss": false,
+                    "position": {
+                      "relativeLocation": "top-left"
+                    },
+                    "positionType": "relative",
+                    "resizable": false,
+                    "showCloseIcon": true,
+                    "title": "{view.params.tagPath}",
+                    "type": "open",
+                    "viewParams": {
+                      "alias": "{view.params.label}",
+                      "tagPath": "{view.params.tagPath}"
+                    },
+                    "viewPath": "Lib/App/Chart",
+                    "viewportBound": true
+                  },
+                  "scope": "C",
+                  "type": "popup"
+                },
+                "onContextMenu": {
+                  "config": {
+                    "script": "\tClickToGraph.OpenMenu(self.view.params.tagPath , event.clientX, event.clientY)"
+                  },
+                  "preventDefault": true,
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Sparkline"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "custom.key[0].alias": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.label"
+                  },
+                  "type": "property"
+                }
+              },
+              "custom.key[0].path": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.tagPath"
+                  },
+                  "type": "property"
+                }
+              },
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.showTrend"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.points": {
+                "binding": {
+                  "config": {
+                    "aggregate": "LastValue",
+                    "avoidScanClassValidation": true,
+                    "dateRange": {
+                      "mostRecent": "{view.params.hrs}",
+                      "mostRecentUnits": "HOUR"
+                    },
+                    "enableValueCache": true,
+                    "ignoreBadQuality": false,
+                    "polling": {
+                      "enabled": true,
+                      "rate": "10"
+                    },
+                    "preventInterpolation": false,
+                    "returnFormat": "Wide",
+                    "returnSize": {
+                      "numRows": "50",
+                      "type": "FIXED"
+                    },
+                    "tags": "{this.custom.key}",
+                    "valueFormat": "DATASET"
+                  },
+                  "overlayOptOut": true,
+                  "type": "tag-history"
+                }
+              }
+            },
+            "props": {
+              "marker": {
+                "first": {
+                  "size": 0
+                },
+                "high": {
+                  "size": 0
+                },
+                "last": {
+                  "size": 0
+                },
+                "low": {
+                  "size": 0
+                }
+              },
+              "style": {
+                "cursor": "pointer"
+              }
+            },
+            "type": "ia.display.sparkline"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "height": 26,
+          "rotate": {
+            "anchor": "36% 50%"
+          },
+          "width": "100%",
+          "y": 18.97
+        },
+        "props": {
+          "style": {
+            "overflow": "hidden",
+            "padding": "0 0 0 8px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "overflow": "visible"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

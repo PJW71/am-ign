@@ -1,0 +1,221 @@
+{
+  "custom": {},
+  "params": {
+    "tagPath": "[NOVO]Eddy Co/Astrodog S CTB/Gas Sales/EFM110/MSU/BAR"
+  },
+  "propConfig": {
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 45,
+      "width": 136
+    },
+    "dropConfig": {
+      "dataTypes": [
+        {
+          "action": "path",
+          "param": "tagPath",
+          "type": "Float4"
+        },
+        {
+          "action": "path",
+          "param": "tagPath",
+          "type": "Float8"
+        },
+        {
+          "action": "path",
+          "param": "tagPath",
+          "type": "Int4"
+        },
+        {
+          "action": "path",
+          "param": "tagPath",
+          "type": "Int8"
+        }
+      ]
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "NumericEntryField"
+        },
+        "position": {
+          "height": 34,
+          "width": "100%",
+          "y": 10.5
+        },
+        "propConfig": {
+          "props.enabled": {
+            "binding": {
+              "config": {
+                "path": "session.custom.writeAccess"
+              },
+              "type": "property"
+            }
+          },
+          "props.inputBounds.maximum": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}.engHigh"
+              },
+              "overlayOptOut": true,
+              "type": "tag"
+            }
+          },
+          "props.inputBounds.minimum": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}.engLow"
+              },
+              "overlayOptOut": true,
+              "type": "tag"
+            }
+          },
+          "props.value": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}"
+              },
+              "overlayOptOut": true,
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "align": "left",
+          "inputBounds": {},
+          "spinner": {
+            "enabled": false
+          },
+          "style": {
+            "classes": "pid-input"
+          }
+        },
+        "type": "ia.input.numeric-entry-field"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "fallbackDelay": 2.5,
+                    "mode": "indirect",
+                    "references": {
+                      "tagPath": "{view.params.tagPath}"
+                    },
+                    "tagPath": "{tagPath}.Documentation"
+                  },
+                  "overlayOptOut": true,
+                  "type": "tag"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "--color-pid-popup",
+                "margin-left": 8,
+                "padding": 3
+              },
+              "textStyle": {
+                "classes": "pid-label"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Dummy"
+            },
+            "position": {
+              "grow": 1
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "height": 16,
+          "width": "100%",
+          "y": 2.5
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Label_0"
+        },
+        "position": {
+          "height": 32,
+          "width": "auto",
+          "x": "auto",
+          "y": 10.494211197
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}.engUnit"
+              },
+              "overlayOptOut": true,
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "padding": "4px 8px 0 0",
+            "right": 0
+          },
+          "textStyle": {
+            "color": "--color-label-2",
+            "fontFamily": "sofia pro",
+            "fontSize": 12,
+            "fontWeight": "300"
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

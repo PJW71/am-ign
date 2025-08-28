@@ -1,0 +1,471 @@
+{
+  "custom": {},
+  "params": {
+    "ACTION": "save",
+    "ACTION_TARGET": "Demo",
+    "ACTION_VALUE": 13.82,
+    "ACTOR": "admin",
+    "ACTOR_HOST": "hostname",
+    "AUDIT_EVENT_ID": 1,
+    "EVENT_TIMESTAMP": "9/11/18 04:28:55 PM",
+    "ORIGINATING_CONTEXT": 2,
+    "ORIGINATING_SYSTEM": "OnlineDemo",
+    "STATUS_CODE": 0
+  },
+  "propConfig": {
+    "params.ACTION": {
+      "paramDirection": "input"
+    },
+    "params.ACTION_TARGET": {
+      "paramDirection": "input"
+    },
+    "params.ACTION_VALUE": {
+      "paramDirection": "input"
+    },
+    "params.ACTOR": {
+      "paramDirection": "input"
+    },
+    "params.ACTOR_HOST": {
+      "paramDirection": "input"
+    },
+    "params.AUDIT_EVENT_ID": {
+      "paramDirection": "input"
+    },
+    "params.EVENT_TIMESTAMP": {
+      "paramDirection": "input"
+    },
+    "params.ORIGINATING_CONTEXT": {
+      "paramDirection": "input"
+    },
+    "params.ORIGINATING_SYSTEM": {
+      "paramDirection": "input"
+    },
+    "params.STATUS_CODE": {
+      "paramDirection": "input"
+    },
+    "params.ack": {
+      "paramDirection": "input"
+    },
+    "params.ackUser": {
+      "paramDirection": "input"
+    },
+    "params.active": {
+      "paramDirection": "input"
+    },
+    "params.activeTimestamp": {
+      "paramDirection": "input"
+    },
+    "params.daytank": {
+      "paramDirection": "input"
+    },
+    "params.displayPath": {
+      "paramDirection": "input"
+    },
+    "params.eventTime": {
+      "paramDirection": "input"
+    },
+    "params.eventType": {
+      "paramDirection": "input"
+    },
+    "params.eventValue": {
+      "paramDirection": "input"
+    },
+    "params.humidity": {
+      "paramDirection": "input"
+    },
+    "params.id": {
+      "paramDirection": "input"
+    },
+    "params.key": {
+      "paramDirection": "input"
+    },
+    "params.name": {
+      "paramDirection": "input"
+    },
+    "params.priority": {
+      "paramDirection": "input"
+    },
+    "params.priorityOrdinal": {
+      "paramDirection": "input"
+    },
+    "params.state": {
+      "paramDirection": "input"
+    },
+    "params.statusCode": {
+      "paramDirection": "input"
+    },
+    "params.t_stamp": {
+      "paramDirection": "input"
+    },
+    "params.tank1": {
+      "paramDirection": "input"
+    },
+    "params.tank2": {
+      "paramDirection": "input"
+    },
+    "params.temp": {
+      "paramDirection": "input"
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 171,
+      "width": 325
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "hasDelegate": true,
+          "name": "Label"
+        },
+        "position": {
+          "basis": "20px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.EVENT_TIMESTAMP"
+              },
+              "transforms": [
+                {
+                  "formatType": "datetime",
+                  "formatValue": {
+                    "date": "short",
+                    "time": "medium"
+                  },
+                  "type": "format"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "Framework/Card/Title"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "hasDelegate": true,
+              "name": "Label"
+            },
+            "position": {
+              "basis": "125px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Framework/Card/Label"
+              },
+              "text": "Actor"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "hasDelegate": true,
+              "name": "Value"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.ACTOR"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "Framework/Card/Bold_Text"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Actor"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "Framework/Card/Item Framework/Card/Item_Border",
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "hasDelegate": true,
+              "name": "Label"
+            },
+            "position": {
+              "basis": "125px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Framework/Card/Label"
+              },
+              "text": "Action"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "hasDelegate": true,
+              "name": "Value"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.ACTION"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "Framework/Card/Bold_Text"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Action"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "Framework/Card/Item Framework/Card/Item_Border",
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "hasDelegate": true,
+              "name": "Label"
+            },
+            "position": {
+              "basis": "125px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Framework/Card/Label"
+              },
+              "text": "Target"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "hasDelegate": true,
+              "name": "Value"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.ACTION_TARGET"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "Framework/Card/Bold_Text"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Target"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "Framework/Card/Item Framework/Card/Item_Border",
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "hasDelegate": true,
+              "name": "Label"
+            },
+            "position": {
+              "basis": "125px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Framework/Card/Label"
+              },
+              "text": "Value"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "hasDelegate": true,
+              "name": "Value"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.ACTION_VALUE"
+                  },
+                  "transforms": [
+                    {
+                      "expression": "try(numberFormat(toDouble({value}), \"#,##0.##\"), {value})",
+                      "type": "expression"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "Framework/Card/Bold_Text",
+                "overflowWrap": "break-word"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Value"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "Framework/Card/Item Framework/Card/Item_Border",
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "hasDelegate": true,
+              "name": "Label"
+            },
+            "position": {
+              "basis": "125px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Framework/Card/Label"
+              },
+              "text": "Status Code"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "hasDelegate": true,
+              "name": "Value"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.STATUS_CODE"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "Framework/Card/Bold_Text"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Status Code"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "Framework/Card/Item",
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "Framework/Card/Card",
+        "marginLeft": "0px",
+        "marginRight": "0px",
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

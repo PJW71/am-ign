@@ -1,0 +1,274 @@
+{
+  "custom": {
+    "tagPathAlarmEnable": null
+  },
+  "params": {
+    "enable": true,
+    "internal": false,
+    "level": "DH",
+    "max": 100,
+    "min": 0,
+    "tagPath": "[PID]NSR/SEP A/TI151A.DHSP"
+  },
+  "propConfig": {
+    "custom.tagPathAlarmEnable": {
+      "binding": {
+        "config": {
+          "path": "view.params.tagPath"
+        },
+        "transforms": [
+          {
+            "code": "\t# this is internal alarm\n\tif \"/PV/Alarms\" in value:\n\t\treturn value.split(\".\")[0] + \".Enabled\"\n\t# this ABB PLC alarm\n\tif \"/ALM/SP/\" in value:\n\t\treturn value.split(\"/ALM/SP/\")[0] + \"/PV/Alarms/\" + self.params.level + \".Enabled\"\n\t# it may be DH or not\n\treturn None",
+            "type": "script"
+          }
+        ],
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "params.enable": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.internal": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.level": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.max": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.min": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 209,
+      "width": 51
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tif self.view.params.internal:\n\t\tstatus \u003d system.tag.read(self.view.custom.tagPathAlarmEnable).value\n\t\tsystem.tag.write(self.view.custom.tagPathAlarmEnable, not status)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Label",
+          "tooltip": {
+            "delay": 1000,
+            "enabled": true,
+            "location": "bottom",
+            "tail": false
+          }
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "meta.tooltip.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.internal"
+              },
+              "transforms": [
+                {
+                  "expression": "if({value}, \"Click To Disable/Enable Alarm\",\r\n\tif( tag({view.custom.tagPathAlarmEnable}), \"Alarm Enable\", \"Alarm Disable\"))",
+                  "type": "expression"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.style": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPathAlarmEnable": "{view.custom.tagPathAlarmEnable}"
+                },
+                "tagPath": "{tagPathAlarmEnable}"
+              },
+              "transforms": [
+                {
+                  "code": "\tif value \u003d\u003d None:\n\t\treturn { \"classes\": \"pid-label\",\n\t\t\t\t  \"color\": \"--color-label-0\"}\n\t\n\t\n\tstyle \u003d { \"classes\": \"pid-label\",\n\t\t\t  \"cursor\": \"pointer\",\n\t\t\t  \"color\": \"--color-label-0\"}\n\t\n\tif self.view.params.internal:\n\t\n\t\tif value:\n\t\t\treturn style\t\n\t\telse:\n\t\t\tstyle[\"color\"] \u003d \"#D5D5D5\";\n\t\t\treturn style\t\n\telse:\n\t\tdel style[\"cursor\"]\n\n\t\tif value:\n\t\t\treturn style\t\n\t\t\n\t\telse:\n\t\t\tstyle[\"color\"] \u003d \"#D5D5D5\";\n\t\t\treturn style\n\t\t",
+                  "type": "script"
+                }
+              ],
+              "type": "tag"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.level"
+              },
+              "overlayOptOut": true,
+              "type": "property"
+            }
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "custom": {
+          "click": false,
+          "deferValue": 42
+        },
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\tself.custom.click \u003d True\t"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          },
+          "dom": {
+            "onMouseLeave": {
+              "config": {
+                "script": "\tif self.custom.click:\n\t\tself.custom.deferValue \u003d self.props.value\n\t\tself.custom.click \u003d False\t"
+              },
+              "scope": "G",
+              "type": "script"
+            },
+            "onMouseUp": {
+              "config": {
+                "script": "\tself.custom.deferValue \u003d self.props.value\n\tself.custom.click \u003d False\t"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Slider"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "custom.deferValue": {
+            "onChange": {
+              "enabled": null,
+              "script": "\told \u003d previousValue.value if previousValue !\u003d None else None\n\n\tif currentValue.value !\u003d old:\n\t\tsystem.tag.write(self.view.params.tagPath, self.props.value)\t\n\t\t\t\n\t\tUtil.audit(action \u003d self.view.params.level + \u0027 Level Changed\u0027, \n\t\t\t\tactionTarget \u003d self.view.params.tagPath.split(\u0027]\u0027)[-1],\n\t\t\t\tactionValue \u003d self.props.value,\n\t\t\t\tsession \u003d self.session)\t\n\t\n\t\n\t\n\t\t"
+            }
+          },
+          "props.enabled": {
+            "binding": {
+              "config": {
+                "expression": "{session.custom.writeAccess} \u0026\u0026 {view.params.enable}"
+              },
+              "overlayOptOut": true,
+              "type": "expr"
+            }
+          },
+          "props.max": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.max}"
+              },
+              "overlayOptOut": true,
+              "type": "expr"
+            }
+          },
+          "props.min": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.min}"
+              },
+              "overlayOptOut": true,
+              "type": "expr"
+            }
+          },
+          "props.step": {
+            "binding": {
+              "config": {
+                "expression": "if({this.props.max} - {this.props.min}\u003e\u003d100,1,0.1)"
+              },
+              "overlayOptOut": true,
+              "type": "expr"
+            }
+          },
+          "props.value": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "tagPath": "{tagPath}"
+              },
+              "overlayOptOut": true,
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "orientation": "vertical",
+          "style": {
+            "classes": "pid-slider"
+          },
+          "trackColor": "--color-blue"
+        },
+        "type": "ia.input.slider"
+      },
+      {
+        "meta": {
+          "name": "Label_3"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "../Slider.props.value"
+              },
+              "overlayOptOut": true,
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "pid-number"
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

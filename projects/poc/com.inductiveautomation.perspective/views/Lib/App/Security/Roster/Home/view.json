@@ -1,0 +1,442 @@
+{
+  "custom": {},
+  "params": {
+    "currentRoster": "tester"
+  },
+  "propConfig": {
+    "params.currentRoster": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 400,
+      "width": 700
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Header"
+        },
+        "position": {
+          "basis": "40px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "background-color": "--color-bk-1",
+            "font-family": "oswald",
+            "font-size": 18,
+            "fontWeight": "100",
+            "padding-left": 10
+          },
+          "text": "On-Call Rosters"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "component": {
+                "onRowDoubleClick": {
+                  "config": {
+                    "script": "\t# Calls to custom method on Edit Icon to change view to EditRoster and pass the selected Roster name to the view.\n\tself.parent.getChild(\"Icons\").getChild(\"Edit\").editRoster()"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Table"
+            },
+            "position": {
+              "basis": "750px",
+              "grow": 1
+            },
+            "propConfig": {
+              "props.data": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.currentRoster"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\t# Get list of rosters from the Gateway\n\trosters \u003d system.roster.getRosters()   \n\n\tif not rosters:\n\t\theaders \u003d [\u0027Name\u0027, \u0027Users\u0027]\n\t\trows \u003d [[\"No Rosters Exist\", \"\"]]\n\t\tdataset \u003d system.dataset.toDataSet(headers, rows)\n\t\tself.props.selection.enableRowSelection \u003d False\n\t\treturn dataset\n\t\n\t# Loops through the rosters in the central gateway and puts list in an array\n\trosterDict \u003d []\n\tfor name, users in rosters.items():\n\t\trosterDict.append([name, len(users)])\n\t\t\n\theaders \u003d [\"Name\", \"Users\"]\n\trosterDataset \u003d system.dataset.toDataSet(headers, rosterDict)\n\t\n\tsortedRosterDataset \u003d system.dataset.sort(rosterDataset, 0)\n\t\n\tself.props.selection.enableRowSelection \u003d True\n\treturn sortedRosterDataset",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "cells": {
+                "style": {
+                  "color": "#95A4AC",
+                  "fontSize": 15,
+                  "fontWeight": 100
+                }
+              },
+              "columns": [
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "Name",
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "justify": "auto",
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "#62A3F6",
+                      "linecap": "round",
+                      "width": 5
+                    },
+                    "max": 100,
+                    "track": {
+                      "color": "#DADADA",
+                      "linecap": "round",
+                      "width": 2
+                    },
+                    "value": {
+                      "color": "#7D7D7D",
+                      "show": true
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "#2196F3",
+                      "unselected": "#FFFFFF"
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "Users",
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "ScheduleManagement/LeftVerticalHeaderBar"
+                    },
+                    "title": "# of Users"
+                  },
+                  "justify": "auto",
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "#62A3F6",
+                      "linecap": "round",
+                      "width": 5
+                    },
+                    "max": 100,
+                    "track": {
+                      "color": "#DADADA",
+                      "linecap": "round",
+                      "width": 2
+                    },
+                    "value": {
+                      "color": "#7D7D7D",
+                      "show": true
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "#2196F3",
+                      "unselected": "#FFFFFF"
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": ""
+                }
+              ],
+              "pager": {
+                "bottom": false
+              },
+              "rows": {
+                "striped": {
+                  "color": {
+                    "even": "var(--color-bk-2)",
+                    "odd": "var(--color-bk-1)"
+                  }
+                },
+                "style": {
+                  "classes": "InputFont"
+                }
+              },
+              "style": {
+                "classes": "widget-bk mytable",
+                "margin": "5px 0 10px 10px"
+              }
+            },
+            "scripts": {
+              "customMethods": [],
+              "extensionFunctions": null,
+              "messageHandlers": [
+                {
+                  "messageType": "RosterManagement_UpdateTable",
+                  "pageScope": true,
+                  "script": "\t# Refresh schedule table data binding.\n\tself.refreshBinding(\"props.data\")",
+                  "sessionScope": false,
+                  "viewScope": false
+                }
+              ]
+            },
+            "type": "ia.display.table"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\timport time\n\t\n\t# Refresh schedule table data binding and clear row selection.\n\tself.parent.parent.getChild(\"Table\").refreshBinding(\"props.data\")\n\tself.parent.parent.getChild(\"Table\").props.selection.selectedRow \u003d None\n\t\n\t# Animation: Rotate refresh icon 360 degrees.\n\tfor degree in range(0,361, 10):\n\t\tself.props.style.transform \u003d \u0027rotate(\u0027 + str(degree) + \u0027deg)\u0027\n\t\ttime.sleep(0.0278)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Refresh"
+                },
+                "position": {
+                  "basis": "26px",
+                  "shrink": 0
+                },
+                "props": {
+                  "path": "material/refresh",
+                  "style": {
+                    "classes": "icon-button",
+                    "margin": "5px 0px 2px 0"
+                  }
+                },
+                "type": "ia.display.icon"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tsystem.perspective.sendMessage(\u0027RosterManagement_ChangeViews\u0027, payload \u003d {\u0027view\u0027:\u0027addEditRoster\u0027, \u0027type\u0027:\u0027add\u0027}, scope\u003d\"page\")\n\t\n\t# Clear row selection on table.\n\tself.parent.parent.getChild(\"Table\").props.selection.selectedRow \u003d None"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Add"
+                },
+                "position": {
+                  "basis": "29px",
+                  "shrink": 0
+                },
+                "props": {
+                  "path": "material/add",
+                  "style": {
+                    "classes": "icon-button",
+                    "margin": "5px 0px 2px 0"
+                  }
+                },
+                "type": "ia.display.icon"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t# Call to custom method which checks if a row is selected on the table, if true, changes the view\n\t# to Edit and passes selected Roster\u0027s name to view.\n\tself.editRoster()"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Edit"
+                },
+                "position": {
+                  "basis": "24px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.style.classes": {
+                    "binding": {
+                      "config": {
+                        "path": ".../Table.props.selection.selectedRow"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tif value \u003d\u003d None:\n\t\treturn \"icon-button-disable\"\n\telse:\n\t\ttry:\n\t\t\treturn \"icon-button\"\n\t\texcept:\n\t\t\treturn \"icon-button\"",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "path": "material/create",
+                  "style": {
+                    "margin": "5px 0px 2px 0"
+                  }
+                },
+                "scripts": {
+                  "customMethods": [
+                    {
+                      "name": "editRoster",
+                      "params": [],
+                      "script": "\t# If the table row is not selected do nothing. Else, navigate to EditRoster view and pass chosen roster name to view.\n\tselectedRow \u003d self.parent.parent.getChild(\"Table\").props.selection.selectedRow\n\tif selectedRow is None:\n\t\tpass\n\telse:\t\t\n\t\tself.view.params.currentRoster \u003d self.parent.parent.getChild(\"Table\").props.selection.data[0].Name\n\t\tsystem.perspective.sendMessage(\u0027RosterManagement_ChangeViews\u0027, payload \u003d {\u0027view\u0027:\u0027addEditRoster\u0027, \u0027type\u0027:\u0027edit\u0027}, scope\u003d\"page\")\n\t\t\n\t\t# Clear row selection on table.\n\t\tself.parent.parent.getChild(\"Table\").props.selection.selectedRow \u003d None"
+                    }
+                  ],
+                  "extensionFunctions": null,
+                  "messageHandlers": []
+                },
+                "type": "ia.display.icon"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t# If a row is not selected do nothing, else open up popup to confirm removal of roster.\n\tif self.parent.parent.getChild(\"Table\").props.selection.selectedRow \u003d\u003d None:\n\t\tpass\n\telse:\n\t\tsystem.perspective.openPopup(\n\t\t\t\u0027RosterManagement_RemoveRoster\u0027, \n\t\t\t\u0027Lib/App/Security/Roster/Popups/Popup_RemoveRoster\u0027, \n\t\t\tparams\u003d{\u0027roster\u0027:self.parent.parent.getChild(\"Table\").props.selection.data[0].Name}, \n\t\t\tshowCloseIcon \u003d False, \n\t\t\tdraggable \u003d False\n\t\t)\n\t\t\n\t\t# Clear row selection on table.\n\t\tself.parent.parent.getChild(\"Table\").props.selection.selectedRow \u003d None"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Delete"
+                },
+                "position": {
+                  "basis": "27px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.style.classes": {
+                    "binding": {
+                      "config": {
+                        "path": ".../Table.props.selection.selectedRow"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tif value \u003d\u003d None:\n\t\treturn \"icon-button-disable\"\n\telse:\n\t\ttry:\n\t\t\treturn \"icon-button\"\n\t\texcept:\n\t\t\treturn \"icon-button\"",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "path": "material/clear",
+                  "style": {
+                    "margin": "5px 0px 2px 0"
+                  }
+                },
+                "type": "ia.display.icon"
+              }
+            ],
+            "meta": {
+              "name": "Icons"
+            },
+            "position": {
+              "basis": "50px",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "overflow": "hidden",
+                "paddingTop": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Roster Table"
+        },
+        "position": {
+          "basis": "100px",
+          "grow": 2
+        },
+        "props": {
+          "style": {
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "alignContent": "center",
+      "direction": "column",
+      "justify": "center",
+      "style": {
+        "backgroundColor": "--color-bk-3"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

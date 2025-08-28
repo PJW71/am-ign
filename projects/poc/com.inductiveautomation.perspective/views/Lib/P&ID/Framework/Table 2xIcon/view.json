@@ -1,0 +1,157 @@
+{
+  "custom": {},
+  "params": {
+    "iconFalse": "P\u0026ID/PB",
+    "iconTrue": "P\u0026ID/PB",
+    "labelFalse": "Normal Range",
+    "labelTrue": "ESD Range",
+    "tooltipFalse": "False State",
+    "tooltipTrue": "True State",
+    "value": false
+  },
+  "propConfig": {
+    "params.fan": {
+      "paramDirection": "input",
+      "persistent": false
+    },
+    "params.iconFalse": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.iconTrue": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.labelFalse": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.labelTrue": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.mydoor.lock": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.mydoor.open": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.tooltipFalse": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.tooltipTrue": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 24,
+      "width": 121
+    },
+    "dropConfig": {
+      "udts": [
+        {
+          "action": "path",
+          "param": "myDoor",
+          "type": "Door"
+        }
+      ]
+    },
+    "loading": {
+      "mode": "blocking"
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Icon",
+          "tooltip": {
+            "enabled": true,
+            "location": "bottom",
+            "tail": false
+          }
+        },
+        "position": {
+          "height": 24,
+          "width": 24,
+          "x": 1.5024032592773438,
+          "y": -0.5030050277709961
+        },
+        "propConfig": {
+          "meta.tooltip.text": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.value} \u003d None,\r\n\t\t\"No Valid Data\", \r\n\t\tif ({view.params.value},\r\n\t\t\t{view.params.tooltipTrue},\r\n\t\t\t{view.params.tooltipFalse}))\t"
+              },
+              "type": "expr"
+            }
+          },
+          "props.path": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.value} \u003d None,\r\n\t\"material/disc_full\", \r\n\tif ({view.params.value},\r\n\t\t\t{view.params.iconTrue},\r\n\t\t\t{view.params.iconFalse}))"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "color": "var(--color-label-1)",
+          "style": {
+            "classes": ""
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "height": 24,
+          "width": 90,
+          "x": 31,
+          "y": -0.5
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.value} \u003d None,\r\n\t\"No Data\", \r\n\tif ({view.params.value},\r\n\t\t\t{view.params.labelTrue},\r\n\t\t\t{view.params.labelFalse}))"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "pid-label",
+            "textAlign": "left"
+          },
+          "textStyle": {
+            "color": "--color-label-1"
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

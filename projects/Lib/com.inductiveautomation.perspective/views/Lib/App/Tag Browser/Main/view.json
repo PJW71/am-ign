@@ -1,0 +1,132 @@
+{
+  "custom": {},
+  "params": {
+    "label": "Tag Path",
+    "tagPath": ""
+  },
+  "propConfig": {
+    "params.label": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.tagPath": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 46,
+      "width": 302
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Name_0"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.params.label": {
+            "binding": {
+              "config": {
+                "path": "view.params.label"
+              },
+              "type": "property"
+            }
+          },
+          "props.params.value": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "path": "view.params.tagPath"
+              },
+              "overlayOptOut": true,
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "params": {
+            "placeholder": "Select Asset Tag Path"
+          },
+          "path": "Lib/P\u0026ID/Framework/Text Input",
+          "style": {
+            "margin": "0 10px 0 0"
+          }
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "tag-browser-selected",
+              "pageScope": true,
+              "script": "\tself.props.params.value \u003d payload",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "draggable": false,
+                "id": "tag-broswer-popup",
+                "modal": true,
+                "overlayDismiss": true,
+                "resizable": false,
+                "showCloseIcon": false,
+                "type": "open",
+                "viewParams": {
+                  "tagPath": "{view.params.tagPath}"
+                },
+                "viewPath": "Lib/App/Tag Browser/Poupup",
+                "viewportBound": true
+              },
+              "scope": "C",
+              "type": "popup"
+            }
+          }
+        },
+        "meta": {
+          "name": "Icon_3",
+          "tooltip": {
+            "enabled": true,
+            "location": "top",
+            "tail": false,
+            "text": "Tag Broswer"
+          }
+        },
+        "position": {
+          "basis": "24px",
+          "shrink": 0
+        },
+        "props": {
+          "path": "material/open_in_browser",
+          "style": {
+            "classes": "map-icon",
+            "margin": "10px 5px 0 0"
+          }
+        },
+        "type": "ia.display.icon"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "max-height": "46px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

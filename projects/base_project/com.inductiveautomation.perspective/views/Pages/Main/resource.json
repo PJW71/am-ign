@@ -1,0 +1,18 @@
+{
+  "scope": "G",
+  "documentation": "Custom :\n1- settings : bind the value from view param page to show the dock .\n2-dock: control the  show of side dock view\n\nPARAMS:\n1-view : get the child view which will be present on the main view \n\nin Child level :\nDock :\nshow param binding to dock param in Parent view level ",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "view.json",
+    "thumbnail.png"
+  ],
+  "attributes": {
+    "lastModification": {
+      "actor": "henric.berner@northvolt.com",
+      "timestamp": "2024-09-19T09:06:17Z"
+    },
+    "lastModificationSignature": "26731991af2fd2e385cc2b6c22729475b98f4811a04330e04bd587bf7d20ae15"
+  }
+}

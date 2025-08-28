@@ -1,0 +1,543 @@
+{
+  "custom": {},
+  "params": {
+    "action": "save",
+    "action_target": "Demo",
+    "action_value": 13.82,
+    "actor": "admin",
+    "actor_host": "hostname",
+    "event_timestamp": "9/11/18 04:28:55 PM"
+  },
+  "propConfig": {
+    "params.ack": {
+      "paramDirection": "input"
+    },
+    "params.ackUser": {
+      "paramDirection": "input"
+    },
+    "params.action": {
+      "paramDirection": "input"
+    },
+    "params.action_target": {
+      "paramDirection": "input"
+    },
+    "params.action_value": {
+      "paramDirection": "input"
+    },
+    "params.active": {
+      "paramDirection": "input"
+    },
+    "params.activeTimestamp": {
+      "paramDirection": "input"
+    },
+    "params.actor": {
+      "paramDirection": "input"
+    },
+    "params.actor_host": {
+      "paramDirection": "input"
+    },
+    "params.daytank": {
+      "paramDirection": "input"
+    },
+    "params.displayPath": {
+      "paramDirection": "input"
+    },
+    "params.eventTime": {
+      "paramDirection": "input"
+    },
+    "params.eventType": {
+      "paramDirection": "input"
+    },
+    "params.eventValue": {
+      "paramDirection": "input"
+    },
+    "params.event_timestamp": {
+      "paramDirection": "input"
+    },
+    "params.humidity": {
+      "paramDirection": "input"
+    },
+    "params.id": {
+      "paramDirection": "input"
+    },
+    "params.key": {
+      "paramDirection": "input"
+    },
+    "params.name": {
+      "paramDirection": "input"
+    },
+    "params.priority": {
+      "paramDirection": "input"
+    },
+    "params.priorityOrdinal": {
+      "paramDirection": "input"
+    },
+    "params.state": {
+      "paramDirection": "input"
+    },
+    "params.statusCode": {
+      "paramDirection": "input"
+    },
+    "params.t_stamp": {
+      "paramDirection": "input"
+    },
+    "params.tank1": {
+      "paramDirection": "input"
+    },
+    "params.tank2": {
+      "paramDirection": "input"
+    },
+    "params.temp": {
+      "paramDirection": "input"
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 213,
+      "width": 310
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "hasDelegate": true,
+          "name": "Label"
+        },
+        "position": {
+          "basis": "28px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.event_timestamp"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "card-title"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "18px",
+              "shrink": 0
+            },
+            "props": {
+              "color": "--color-green",
+              "path": "material/person",
+              "style": {
+                "margin": "2px 8px 2px 4px"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "hasDelegate": true,
+              "name": "Label"
+            },
+            "position": {
+              "basis": "125px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Framework/Card/Label"
+              },
+              "text": "Actor"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "hasDelegate": true,
+              "name": "Value"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.actor"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "Framework/Card/Value"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Actor"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "margin-left": 4,
+            "min-height": 28,
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "18px",
+              "shrink": 0
+            },
+            "props": {
+              "color": "--color-green",
+              "path": "material/devices",
+              "style": {
+                "margin": "2px 8px 2px 4px"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "hasDelegate": true,
+              "name": "Label"
+            },
+            "position": {
+              "basis": "125px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Framework/Card/Label"
+              },
+              "text": "Host"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "hasDelegate": true,
+              "name": "Value"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.actor_host"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "Framework/Card/Value"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Target_0"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "margin-left": 4,
+            "min-height": 28,
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "18px",
+              "shrink": 0
+            },
+            "props": {
+              "color": "--color-green",
+              "path": "material/trending_down",
+              "style": {
+                "margin": "2px 8px 2px 4px"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "hasDelegate": true,
+              "name": "Label"
+            },
+            "position": {
+              "basis": "125px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Framework/Card/Label"
+              },
+              "text": "Action"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "hasDelegate": true,
+              "name": "Value"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.action"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "Framework/Card/Value"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Action"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "margin-left": 4,
+            "min-height": 28,
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "18px",
+              "shrink": 0
+            },
+            "props": {
+              "color": "--color-green",
+              "path": "material/save_alt",
+              "style": {
+                "margin": "2px 8px 2px 4px"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "hasDelegate": true,
+              "name": "Label"
+            },
+            "position": {
+              "basis": "125px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Framework/Card/Label"
+              },
+              "text": "Target"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "hasDelegate": true,
+              "name": "Value"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.action_target"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "Framework/Card/Value"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Target"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "margin-left": 4,
+            "min-height": 28,
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "18px",
+              "shrink": 0
+            },
+            "props": {
+              "color": "--color-green",
+              "path": "nader/entry",
+              "style": {
+                "margin": "2px 8px 2px 4px"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "hasDelegate": true,
+              "name": "Label"
+            },
+            "position": {
+              "basis": "125px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Framework/Card/Label"
+              },
+              "text": "Value"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "hasDelegate": true,
+              "name": "Value"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.action_value"
+                  },
+                  "transforms": [
+                    {
+                      "expression": "try(numberFormat(toDouble({value}), \"#,##0.##\"), {value})",
+                      "type": "expression"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "Framework/Card/Value",
+                "wordSpacing": "pre"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Value"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "margin-left": 4,
+            "min-height": 28,
+            "overflow": "visible"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Label_0"
+        },
+        "position": {
+          "basis": "5px",
+          "grow": 1
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "card",
+        "overflow": "visible"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

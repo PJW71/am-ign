@@ -1,0 +1,216 @@
+{
+  "custom": {},
+  "params": {
+    "icon": "map/add-remove",
+    "index": 0,
+    "label": "value",
+    "params": {
+      "dbCon": "Map"
+    },
+    "selected": true,
+    "target": "Lib/MES/Asset Manager/Main"
+  },
+  "propConfig": {
+    "params.icon": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.index": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.label": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.params": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.selected": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.target": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 42,
+      "width": 175
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Icon",
+          "tooltip": {
+            "location": "center-right",
+            "style": {
+              "height": 36
+            },
+            "tail": false,
+            "text": "GIS Asset Managiement"
+          }
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.color": {
+            "binding": {
+              "config": {
+                "path": "view.params.selected"
+              },
+              "enabled": false,
+              "transforms": [
+                {
+                  "fallback": "#C2E4F5",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": true,
+                      "output": "orange"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.path": {
+            "binding": {
+              "config": {
+                "path": "view.params.icon"
+              },
+              "type": "property"
+            }
+          },
+          "props.style.backgroundColor": {
+            "binding": {
+              "config": {
+                "path": "view.params.selected"
+              },
+              "enabled": false,
+              "transforms": [
+                {
+                  "fallback": "",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": true,
+                      "output": "orange"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.style.border": {
+            "binding": {
+              "config": {
+                "path": "view.params.selected"
+              },
+              "transforms": [
+                {
+                  "fallback": "",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": true,
+                      "output": "2px solid var(--color-blue)"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "color": "#89DF93",
+          "key": "#C2E4F5",
+          "style": {
+            "backgroundColor": "",
+            "border-radius": "5px",
+            "classes": "",
+            "height": 42,
+            "margin": "0 10px 0 0",
+            "padding": 6,
+            "width": 42
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "basis": "150px",
+          "grow": 1
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.label"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "textStyle": {
+            "color": "white"
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "events": {
+      "dom": {
+        "onClick": {
+          "config": {
+            "script": "\tsystem.perspective.sendMessage(\"menu-item-select\", self.view.params.index)\n\tself.view.params.selected \u003d True\n\tsystem.perspective.navigate(view \u003d self.view.params.target, params \u003d system.util.jsonDecode(system.util.jsonEncode(self.view.params.params)))"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "classes": "menu-item",
+        "cursor": "pointer"
+      }
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "menu-item-select",
+          "pageScope": true,
+          "script": "\tif self.view.params.index \u003d\u003d payload:\n\t\tself.view.params.selected \u003d True\n\telse:\n\t\tself.view.params.selected \u003d False\t\t\t",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.flex"
+  }
+}
